@@ -1,0 +1,115 @@
+/* Base Styles */
+body {
+    font-family: 'Exo 2', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+}
+
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a202c; /* Darker track */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a5568; /* Gray thumb */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #718096; /* Lighter gray on hover */
+}
+
+/* Custom animations */
+.mining-pulse {
+    animation: mining-pulse 0.6s ease-out;
+}
+
+@keyframes mining-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.upgrade-glow {
+    animation: upgrade-glow 0.8s ease-out;
+}
+
+@keyframes upgrade-glow {
+    0% { box-shadow: 0 0 5px #8b5cf6; }
+    50% { box-shadow: 0 0 20px #8b5cf6, 0 0 30px #8b5cf6; }
+    100% { box-shadow: 0 0 5px #8b5cf6; }
+}
+
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(50%);
+}
+
+.enabled-button {
+    opacity: 1;
+    cursor: pointer;
+    filter: none;
+}
+
+/* Glass morphism effect */
+.glass {
+    background: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tab styling */
+.tab-content {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+/* Progress bar */
+.progress-bar {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+    background-size: 200% 100%;
+    animation: progress-shift 3s ease-in-out infinite;
+}
+
+@keyframes progress-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Shimmer effect for buttons */
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+}
+
+/* Neon text effect */
+.neon-text {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+}
+
+/* Custom animations */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #3b82f6, 0 0 10px #3b82f6, 0 0 15px #3b82f6; }
+    100% { box-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 30px #3b82f6; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+} 

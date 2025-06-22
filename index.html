@@ -171,6 +171,9 @@
         </div>
     </div>
 
+    <!-- Message Box - Global Pop-up -->
+    <div id="messageBox" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-4 rounded-xl shadow-2xl border text-center font-semibold hidden max-w-md mx-4 backdrop-blur-sm transition-all duration-300"></div>
+
     <!-- Main Game Container -->
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -190,12 +193,12 @@
                     <!-- Balance Display -->
                     <div class="text-center mb-8 p-6 bg-gray-800/50 rounded-xl border border-gray-600/30 backdrop-blur-sm">
                         <p class="text-lg text-gray-400 mb-2 font-exo">💰 Current Balance</p>
-                        <p id="satoshisDisplay" class="text-4xl md:text-5xl font-black text-white mb-2 animate-pulse-slow font-jetbrains neon-text">0 Satoshis</p>
+                        <p id="satoshisDisplay" class="text-4xl md:text-5xl font-black text-white mb-2 animate-pulse-slow font-jetbrains neon-text">0 sats</p>
                         <div class="flex items-center justify-center gap-2 text-sm text-gray-500 font-exo">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
                             </svg>
-                            <span id="satoshiRate">0 Satoshis/second</span>
+                            <span id="satoshiRate">0 sats/second</span>
                         </div>
                     </div>
 
@@ -207,7 +210,7 @@
                             </svg>
                             <span>Mine Satoshis!</span>
                         </button>
-                        <p id="clickValueDisplay" class="text-md text-gray-400 mt-4 font-exo">Getting 1 Satoshi per click</p>
+                        <p id="clickValueDisplay" class="text-md text-gray-400 mt-4 font-exo">Getting 1 sat per click</p>
                         <p class="text-xs text-gray-500 mt-2 font-exo">💡 Press Space or Enter to mine faster!</p>
                     </div>
 
@@ -222,7 +225,7 @@
                         <div class="space-y-2 text-sm font-exo">
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Total Mined:</span>
-                                <span id="totalMined" class="text-white font-semibold font-jetbrains">0 Satoshis</span>
+                                <span id="totalMined" class="text-white font-semibold font-jetbrains">0 sats</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Clicks:</span>
@@ -254,9 +257,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Message Box -->
-                    <div id="messageBox" class="mt-6 p-4 rounded-xl shadow-inner hidden text-center font-semibold"></div>
                 </div>
             </div>
 
@@ -314,7 +314,7 @@
                                             </div>
                                         </div>
                                         <p id="gpuLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 1</p>
-                                        <p id="gpuCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 10 Satoshis</p>
+                                        <p id="gpuCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 10 sats</p>
                                         <button id="buyGpuButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
                                             Upgrade GPU
                                         </button>
@@ -334,7 +334,7 @@
                                             </div>
                                         </div>
                                         <p id="coolingLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="coolingCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 50 Satoshis</p>
+                                        <p id="coolingCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 50 sats</p>
                                         <button id="buyCoolingButton" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
                                             Upgrade Cooling
                                         </button>
@@ -354,7 +354,7 @@
                                             </div>
                                         </div>
                                         <p id="powerSupplyLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="powerSupplyCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 200 Satoshis</p>
+                                        <p id="powerSupplyCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 200 sats</p>
                                         <button id="buyPowerSupplyButton" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
                                             Upgrade Power Supply
                                         </button>
@@ -374,7 +374,7 @@
                                             </div>
                                         </div>
                                         <p id="quantumLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="quantumCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 1,000,000 Satoshis</p>
+                                        <p id="quantumCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 1,000,000 sats</p>
                                         <button id="buyQuantumButton" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
                                             Research Quantum
                                         </button>
@@ -394,7 +394,7 @@
                                             </div>
                                         </div>
                                         <p id="automationLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="automationCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 5,000 Satoshis</p>
+                                        <p id="automationCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 5,000 sats</p>
                                         <button id="buyAutomationButton" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
                                             Upgrade Automation
                                         </button>
@@ -404,6 +404,31 @@
 
                             <!-- Rebirth Upgrades Tab -->
                             <div id="rebirthContent" class="tab-content hidden">
+                                <!-- Rebirth Button -->
+                                <div class="mb-6 p-6 bg-gradient-to-r from-orange-600/20 to-red-600/20 rounded-xl border border-orange-500/30 backdrop-blur-sm">
+                                    <div class="text-center">
+                                        <h3 class="text-2xl font-bold text-orange-400 mb-3 font-orbitron neon-text">🔥 Rebirth System</h3>
+                                        <p class="text-gray-300 mb-4 font-exo">Reset your progress for permanent bonuses and rebirth points!</p>
+                                        <div class="flex items-center justify-center gap-4 mb-4 text-sm font-exo">
+                                            <div class="text-center">
+                                                <p class="text-gray-400">Required:</p>
+                                                <p id="rebirthRequirement" class="text-yellow-400 font-jetbrains font-bold">100,000+ sats</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="text-gray-400">Current:</p>
+                                                <p id="rebirthProgress" class="text-green-400 font-jetbrains font-bold">0 sats</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="rebirth()" class="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-orange-500/50 flex items-center justify-center gap-3 mx-auto font-orbitron shimmer">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                            </svg>
+                                            <span>🔥 REBIRTH NOW</span>
+                                        </button>
+                                        <p class="text-xs text-gray-500 mt-3 font-exo">💡 Rebirth gives you permanent bonuses and rebirth points to spend on upgrades!</p>
+                                    </div>
+                                </div>
+                                
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     
                                     <!-- Rebirth Mining Boost -->
@@ -483,9 +508,9 @@
 
     <!-- Settings Popup Modal -->
     <div id="settingsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-800 rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl border border-gray-600">
+        <div class="bg-gray-800 rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl border border-gray-600 backdrop-blur-sm">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">⚙️ Game Settings</h2>
+                <h2 class="text-2xl font-bold text-white font-orbitron">⚙️ Game Settings</h2>
                 <button onclick="closeSettings()" class="text-gray-400 hover:text-white transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -495,7 +520,7 @@
             
             <div class="space-y-4">
                 <!-- Save Game -->
-                <button onclick="saveGame(); closeSettings();" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-500 flex items-center justify-center gap-2">
+                <button onclick="saveGame(); closeSettings();" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-500 flex items-center justify-center gap-2 font-exo">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                     </svg>
@@ -503,7 +528,7 @@
                 </button>
                 
                 <!-- Load Game -->
-                <button onclick="loadGame(); closeSettings();" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center gap-2">
+                <button onclick="loadGame(); closeSettings();" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center gap-2 font-exo">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                     </svg>
@@ -511,7 +536,7 @@
                 </button>
                 
                 <!-- Prestige -->
-                <button onclick="prestige(); closeSettings();" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2">
+                <button onclick="prestige(); closeSettings();" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 font-exo">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
@@ -519,7 +544,7 @@
                 </button>
                 
                 <!-- Rebirth -->
-                <button onclick="rebirth(); closeSettings();" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center justify-center gap-2">
+                <button onclick="rebirth(); closeSettings();" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center justify-center gap-2 font-exo">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                     </svg>
@@ -633,17 +658,35 @@
         // --- Core Game Functions ---
 
         function showMessage(message, type) {
+            const messageBox = document.getElementById('messageBox');
             messageBox.textContent = message;
-            messageBox.classList.remove('hidden', 'bg-green-800', 'bg-red-800', 'bg-blue-800');
+            messageBox.classList.remove('hidden', 'bg-green-800', 'bg-red-800', 'bg-blue-800', 'border-green-500', 'border-red-500', 'border-blue-500', 'text-green-100', 'text-red-100', 'text-blue-100');
+            
+            // Add slide-in animation
+            messageBox.style.transform = 'translateX(-50%) translateY(-100%)';
+            messageBox.style.opacity = '0';
+            
             if (type === 'success') {
-                messageBox.classList.add('bg-green-800');
+                messageBox.classList.add('bg-green-800/90', 'border-green-500', 'text-green-100');
             } else if (type === 'error') {
-                messageBox.classList.add('bg-red-800');
+                messageBox.classList.add('bg-red-800/90', 'border-red-500', 'text-red-100');
             } else {
-                messageBox.classList.add('bg-blue-800');
+                messageBox.classList.add('bg-blue-800/90', 'border-blue-500', 'text-blue-100');
             }
+            
+            // Animate in
             setTimeout(() => {
-                messageBox.classList.add('hidden');
+                messageBox.style.transform = 'translateX(-50%) translateY(0)';
+                messageBox.style.opacity = '1';
+            }, 10);
+            
+            // Auto-hide after 3 seconds with slide-out animation
+            setTimeout(() => {
+                messageBox.style.transform = 'translateX(-50%) translateY(-100%)';
+                messageBox.style.opacity = '0';
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 300);
             }, 3000);
         }
 
@@ -683,11 +726,11 @@
         }
 
         function updateUI() {
-            satoshisDisplay.textContent = `${satoshis.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Satoshis`;
-            satoshiRate.textContent = `${miningPowerPerSecond.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Satoshis/second`;
-            clickValueDisplay.textContent = `Getting ${miningPowerPerClick.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Satoshis per click`;
+            satoshisDisplay.textContent = `${satoshis.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats`;
+            satoshiRate.textContent = `${miningPowerPerSecond.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats/second`;
+            clickValueDisplay.textContent = `Getting ${miningPowerPerClick.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats per click`;
 
-            totalMinedDisplay.textContent = `${totalMined.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Satoshis`;
+            totalMinedDisplay.textContent = `${totalMined.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats`;
             totalClicksDisplay.textContent = totalClicks.toLocaleString();
             
             const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
@@ -697,19 +740,19 @@
             timePlayedDisplay.textContent = `${hours}h ${minutes}m ${seconds}s`;
 
             gpuLevel.textContent = `Level: ${gpu.level}`;
-            gpuCost.textContent = `Cost: ${gpu.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} Satoshis`;
+            gpuCost.textContent = `Cost: ${gpu.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
 
             coolingLevel.textContent = `Level: ${cooling.level}`;
-            coolingCost.textContent = `Cost: ${cooling.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} Satoshis`;
+            coolingCost.textContent = `Cost: ${cooling.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
 
             powerSupplyLevel.textContent = `Level: ${powerSupply.level}`;
-            powerSupplyCost.textContent = `Cost: ${powerSupply.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} Satoshis`;
+            powerSupplyCost.textContent = `Cost: ${powerSupply.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
 
             quantumLevel.textContent = `Level: ${quantumProcessor.level}`;
-            quantumCost.textContent = `Cost: ${quantumProcessor.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} Satoshis`;
+            quantumCost.textContent = `Cost: ${quantumProcessor.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
 
             automationLevel.textContent = `Level: ${automation.level}`;
-            automationCost.textContent = `Cost: ${automation.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} Satoshis`;
+            automationCost.textContent = `Cost: ${automation.cost.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
 
             // Rebirth upgrades
             miningBoostLevel.textContent = `Level: ${miningBoost.level}`;
@@ -728,6 +771,21 @@
             rebirthPointsDisplay.textContent = rebirthPoints;
             rebirthMultiplierDisplay.textContent = `${rebirthMultiplier.toFixed(1)}x`;
 
+            // Update rebirth progress
+            const rebirthProgressElement = document.getElementById('rebirthProgress');
+            if (rebirthProgressElement) {
+                rebirthProgressElement.textContent = `${totalMined.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
+                
+                // Change color based on progress
+                if (totalMined >= 10000000) {
+                    rebirthProgressElement.className = 'text-green-400 font-jetbrains font-bold neon-text';
+                } else if (totalMined >= 5000000) {
+                    rebirthProgressElement.className = 'text-yellow-400 font-jetbrains font-bold';
+                } else {
+                    rebirthProgressElement.className = 'text-red-400 font-jetbrains font-bold';
+                }
+            }
+
             updateAltcoinMarket();
             checkButtonAvailability();
         }
@@ -737,7 +795,7 @@
             for (const key in altcoins) {
                 const coin = altcoins[key];
                 const altcoinCard = document.createElement('div');
-                altcoinCard.className = 'bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-teal-500/50 transition-all duration-300';
+                altcoinCard.className = 'bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-teal-500/50 transition-all duration-300 backdrop-blur-sm';
                 
                 const colorClass = {
                     'orange': 'bg-orange-600',
@@ -756,15 +814,15 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">${key}</h3>
-                            <p class="text-gray-400 text-sm">Current Price</p>
+                            <h3 class="text-xl font-bold text-white font-orbitron">${key}</h3>
+                            <p class="text-gray-400 text-sm font-exo">Current Price</p>
                         </div>
                     </div>
-                    <p class="text-gray-300 text-sm mb-2">Price: <span class="text-yellow-400 font-bold" id="${key.replace(/\s/g, '')}Price">${coin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Satoshis</span></p>
-                    <p class="text-gray-300 text-sm mb-4">Holdings: <span class="text-blue-400 font-bold" id="${key.replace(/\s/g, '')}Holdings">${coin.holdings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
+                    <p class="text-gray-300 text-sm mb-2 font-exo">Price: <span class="text-yellow-400 font-bold font-jetbrains" id="${key.replace(/\s/g, '')}Price">${coin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats</span></p>
+                    <p class="text-gray-300 text-sm mb-4 font-exo">Holdings: <span class="text-blue-400 font-bold font-jetbrains" id="${key.replace(/\s/g, '')}Holdings">${coin.holdings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
                     <div class="flex gap-2">
-                        <button id="buy${key.replace(/\s/g, '')}Button" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-500/50 disabled:opacity-50 disabled:cursor-not-allowed text-sm">Buy</button>
-                        <button id="sell${key.replace(/\s/g, '')}Button" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed text-sm">Sell</button>
+                        <button id="buy${key.replace(/\s/g, '')}Button" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-500/50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-exo">Buy</button>
+                        <button id="sell${key.replace(/\s/g, '')}Button" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-exo">Sell</button>
                     </div>
                 `;
                 altcoinMarketDiv.appendChild(altcoinCard);
@@ -868,7 +926,7 @@
                 setTimeout(() => buyGpuButton.parentElement.classList.remove('upgrade-glow'), 800);
                 updateMiningPower();
             } else {
-                showMessage('❌ Not enough Satoshis for GPU upgrade!', 'error');
+                showMessage('❌ Not enough sats for GPU upgrade!', 'error');
             }
         });
 
@@ -882,7 +940,7 @@
                 setTimeout(() => buyCoolingButton.parentElement.classList.remove('upgrade-glow'), 800);
                 updateMiningPower();
             } else {
-                showMessage('❌ Not enough Satoshis for Cooling System upgrade!', 'error');
+                showMessage('❌ Not enough sats for Cooling System upgrade!', 'error');
             }
         });
 
@@ -896,7 +954,7 @@
                 setTimeout(() => buyPowerSupplyButton.parentElement.classList.remove('upgrade-glow'), 800);
                 updateMiningPower();
             } else {
-                showMessage('❌ Not enough Satoshis for Power Supply upgrade!', 'error');
+                showMessage('❌ Not enough sats for Power Supply upgrade!', 'error');
             }
         });
 
@@ -910,7 +968,7 @@
                 setTimeout(() => buyQuantumButton.parentElement.classList.remove('upgrade-glow'), 800);
                 updateMiningPower();
             } else {
-                showMessage('❌ Not enough Satoshis for Quantum Processor research!', 'error');
+                showMessage('❌ Not enough sats for Quantum Processor research!', 'error');
             }
         });
 
@@ -924,7 +982,7 @@
                 setTimeout(() => buyAutomationButton.parentElement.classList.remove('upgrade-glow'), 800);
                 updateMiningPower();
             } else {
-                showMessage('❌ Not enough Satoshis for Mining Automation research!', 'error');
+                showMessage('❌ Not enough sats for Mining Automation research!', 'error');
             }
         });
 
@@ -991,7 +1049,7 @@
                 showMessage(`📈 Bought 1 ${coinName}!`, 'success');
                 updateUI();
             } else {
-                showMessage(`❌ Not enough Satoshis to buy 1 ${coinName}!`, 'error');
+                showMessage(`❌ Not enough sats to buy 1 ${coinName}!`, 'error');
             }
         }
 
@@ -1114,16 +1172,20 @@
                 showMessage(`⚡ Prestige! +${multiplier * 0.1}x multiplier!`, 'success');
                 updateMiningPower();
             } else {
-                showMessage('❌ Need 1,000,000+ Satoshis to prestige!', 'error');
+                showMessage('❌ Need 1,000,000+ sats to prestige!', 'error');
             }
         }
 
         function rebirth() {
-            if (totalMined >= 10000000) {
-                const points = Math.floor(totalMined / 10000000);
+            // Progressive rebirth requirements: 100k, 500k, 1M, 2M, 5M, 10M, 20M, 50M, 100M, etc.
+            const rebirthRequirements = [100000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
+            const currentRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
+            
+            if (totalMined >= currentRequirement) {
+                const points = Math.floor(totalMined / currentRequirement);
                 rebirthLevel++;
                 rebirthPoints += points;
-                rebirthMultiplier += points * 0.5; // Each rebirth point gives 0.5x multiplier
+                rebirthMultiplier += points * 0.3; // Reduced multiplier per point for balance
                 
                 // Reset game but keep rebirth benefits
                 satoshis = 0;
@@ -1150,10 +1212,12 @@
                     altcoins[key].holdings = 0;
                 }
                 
-                showMessage(`🔥 Rebirth! +${points} points, +${points * 0.5}x multiplier!`, 'success');
+                const nextRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
+                showMessage(`🔥 Rebirth ${rebirthLevel}! +${points} points, +${(points * 0.3).toFixed(1)}x multiplier! Next: ${nextRequirement.toLocaleString()} sats`, 'success');
                 updateMiningPower();
             } else {
-                showMessage('❌ Need 10,000,000+ Satoshis to rebirth!', 'error');
+                const nextRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
+                showMessage(`❌ Need ${nextRequirement.toLocaleString()}+ sats to rebirth!`, 'error');
             }
         }
 
