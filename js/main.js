@@ -1,10 +1,13 @@
 // Main entry point for Mining Mania
 // Handles initialization and event listeners
 import { loadGame, saveGame, prestige, rebirth, resetGame, openSettings, closeSettings } from './saveLoad.js';
-import { updateMiningPower, gameLoop, mine } from './game.js';
+import { updateMiningPower, gameLoop, mine, getRebirthRequirement } from './game.js';
 import { buyGpu, buyCooling, buyPowerSupply, buyQuantum, buyAutomation, buyMiningBoost, buyEfficiency, buyLuck } from './upgrades.js';
 import { gameState } from './state.js';
 import { renderUI, showMessage } from './ui.js';
+import { doRebirth } from './rebirth.js';
+
+window.getRebirthRequirement = getRebirthRequirement;
 
 // --- Tab Switching Logic ---
 function switchTabSlider(tabIndex) {
@@ -128,10 +131,11 @@ const setupEventListeners = () => {
         });
     }
 
-    // Rebirth Now button animation
+    // Rebirth Now button animation and logic
     const rebirthNowButton = document.getElementById('rebirthNowButton');
     if (rebirthNowButton) {
         rebirthNowButton.addEventListener('click', () => {
+            doRebirth(); // Actually perform rebirth
             rebirthNowButton.classList.remove('shimmer', 'mining-pulse-orange');
             void rebirthNowButton.offsetWidth;
             rebirthNowButton.classList.add('mining-pulse-orange');

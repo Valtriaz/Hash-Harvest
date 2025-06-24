@@ -1,5 +1,5 @@
 import { gameState } from './state.js';
-import { getRebirthRequirement } from './game.js';
+import { getRebirthRequirement, canRebirth } from './rebirth.js';
 
 // UI rendering functions
 export const renderUI = () => {
@@ -39,14 +39,28 @@ export const renderUI = () => {
     document.getElementById('efficiencyCost').textContent = `Cost: ${s.efficiency.cost} Rebirth Points`;
     document.getElementById('luckLevel').textContent = `Level: ${s.luck.level}`;
     document.getElementById('luckCost').textContent = `Cost: ${s.luck.cost} Rebirth Points`;
-    // Rebirth Progress Bar
+    // Rebirth System - use currentRebirthNo for all requirements
+    const currentRebirthNo = s.rebirthLevel;
+    const rebirthRequirementElem = document.getElementById('rebirthRequirement');
+    const rebirthNextRequirementElem = document.getElementById('rebirthNextRequirement');
+    const rebirthNowButton = document.getElementById('rebirthNowButton');
+    const currentRequirement = getRebirthRequirement(currentRebirthNo);
+    const nextRequirement = getRebirthRequirement(currentRebirthNo + 1);
+    if (rebirthRequirementElem) {
+        rebirthRequirementElem.textContent = `${currentRequirement.toLocaleString()}+ sats`;
+    }
+    if (rebirthNextRequirementElem) {
+        rebirthNextRequirementElem.textContent = `Next: ${nextRequirement.toLocaleString()}+ sats`;
+    }
+    if (rebirthNowButton) {
+        rebirthNowButton.disabled = !canRebirth(s);
+    }
     const rebirthProgressBar = document.getElementById('rebirthProgressBar');
     const rebirthProgressText = document.getElementById('rebirthProgressText');
-    const rebirthRequirement = window.getRebirthRequirement ? window.getRebirthRequirement(s.rebirthLevel) : 100000;
     if (rebirthProgressBar && rebirthProgressText) {
-        const progress = Math.min(s.totalMined / rebirthRequirement, 1);
+        const progress = Math.min(s.totalMined / currentRequirement, 1);
         rebirthProgressBar.style.width = (progress * 100) + '%';
-        rebirthProgressText.textContent = `${s.totalMined.toLocaleString()} / ${rebirthRequirement.toLocaleString()} sats`;
+        rebirthProgressText.textContent = `${s.totalMined.toLocaleString()} / ${currentRequirement.toLocaleString()} sats to next rebirth`;
     }
     const prestigeProgress = document.getElementById('prestigeProgress');
     const prestigeRequirement = document.getElementById('prestigeRequirement');
