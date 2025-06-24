@@ -97,12 +97,9 @@ function updateProgressDisplays() {
     const rebirthProgressElement = document.getElementById('rebirthProgress');
     const rebirthRequirementElement = document.getElementById('rebirthRequirement');
     if (rebirthProgressElement && rebirthRequirementElement) {
-        const rebirthRequirements = [100000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
-        const currentRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
-        
+        const currentRequirement = window.getRebirthRequirement(rebirthLevel);
         rebirthProgressElement.textContent = `${totalMined.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} sats`;
         rebirthRequirementElement.textContent = `${currentRequirement.toLocaleString()}+ sats`;
-        
         if (totalMined >= currentRequirement) {
             rebirthProgressElement.className = 'text-green-400 font-jetbrains font-bold neon-text';
         } else if (totalMined >= currentRequirement * 0.5) {

@@ -33,6 +33,19 @@ const altcoins = {
     'Solana': { price: 80, holdings: 0, volatility: 0.18, color: 'purple' }
 };
 
+// Rebirth requirements progression (global)
+const rebirthRequirements = [100000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
+
+// Returns the requirement for a given rebirth level (progresses infinitely)
+function getRebirthRequirement(level) {
+    if (level < rebirthRequirements.length) {
+        return rebirthRequirements[level];
+    } else {
+        // After the last value, double each time
+        return rebirthRequirements[rebirthRequirements.length - 1] * Math.pow(2, level - rebirthRequirements.length + 1);
+    }
+}
+
 // --- Core Game Functions ---
 
 function showMessage(message, type) {
@@ -166,4 +179,6 @@ function sellAltcoin(coinName) {
     } else {
         showMessage(`❌ No ${coinName} to sell!`, 'error');
     }
-} 
+}
+
+window.getRebirthRequirement = getRebirthRequirement; 

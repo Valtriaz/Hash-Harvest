@@ -101,16 +101,12 @@ function prestige() {
 }
 
 function rebirth() {
-    // Progressive rebirth requirements: 100k, 500k, 1M, 2M, 5M, 10M, 20M, 50M, 100M, etc.
-    const rebirthRequirements = [100000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
-    const currentRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
-    
+    const currentRequirement = window.getRebirthRequirement(rebirthLevel);
     if (totalMined >= currentRequirement) {
         const points = Math.floor(totalMined / currentRequirement);
         rebirthLevel++;
         rebirthPoints += points;
         rebirthMultiplier += points * 0.3; // Reduced multiplier per point for balance
-        
         // Reset game but keep rebirth benefits
         satoshis = 0;
         totalMined = 0;
@@ -118,29 +114,26 @@ function rebirth() {
         startTime = Date.now();
         prestigeLevel = 0;
         prestigeMultiplier = 1;
-        
         // Reset upgrades
         gpu = { level: 1, cost: 10, baseClick: 1, baseIdle: 0.1, multiplier: 1.2 };
         cooling = { level: 0, cost: 50, efficiencyBoost: 0.05, multiplier: 1.3 };
         powerSupply = { level: 0, cost: 200, capacityIncrease: 1, multiplier: 1.4 };
         quantumProcessor = { level: 0, cost: 1000000, megaBoost: 100, multiplier: 2.0 };
         automation = { level: 0, cost: 5000, autoClickRate: 1, multiplier: 1.5 };
-        
         // Reset rebirth upgrades
         miningBoost = { level: 0, cost: 1, boost: 0.1, multiplier: 1.2 };
         efficiency = { level: 0, cost: 2, boost: 0.05, multiplier: 1.3 };
         luck = { level: 0, cost: 3, boost: 0.03, multiplier: 1.4 };
-        
         // Reset altcoins
         for (const key in altcoins) {
             altcoins[key].holdings = 0;
         }
-        
-        const nextRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
+        const nextRequirement = window.getRebirthRequirement(rebirthLevel);
         showMessage(`🔥 Rebirth ${rebirthLevel}! +${points} points, +${(points * 0.3).toFixed(1)}x multiplier! Next: ${nextRequirement.toLocaleString()} sats`, 'success');
         updateMiningPower();
+        updateProgressDisplays();
     } else {
-        const nextRequirement = rebirthRequirements[Math.min(rebirthLevel, rebirthRequirements.length - 1)];
+        const nextRequirement = window.getRebirthRequirement(rebirthLevel);
         showMessage(`❌ Need ${nextRequirement.toLocaleString()}+ sats to rebirth!`, 'error');
     }
 }

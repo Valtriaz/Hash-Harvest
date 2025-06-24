@@ -10,135 +10,184 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="min-h-screen p-4 sm:p-6 md:p-8">
+<body class="min-h-screen p-2 sm:p-4 md:p-8 overflow-x-hidden">
     <!-- Header with Save/Load -->
-    <div class="max-w-7xl mx-auto mb-6">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent font-orbitron neon-text">
-                🚀 Mining Mania
-            </h1>
-            <div class="flex gap-3">
-                <button onclick="prestige()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center gap-2 font-exo">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                    Prestige
-                </button>
-                <button onclick="rebirth()" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center gap-2 font-exo">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                    Rebirth
-                </button>
-                <button onclick="openSettings()" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center gap-2 font-exo">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="max-w-7xl mx-auto mb-4 sm:mb-6">
+        <div class="flex flex-row items-center justify-between gap-2 sm:gap-4">
+            <div class="flex flex-row items-center w-full sm:w-auto">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent font-orbitron neon-text text-center w-full sm:w-auto mb-0">
+                    🚀 Mining Mania
+                </h1>
+                <!-- Mobile: Icon-only settings button -->
+                <button onclick="openSettings()" class="ml-2 sm:hidden w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Settings">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
-                    Settings
+                </button>
+            </div>
+            <!-- Desktop: Button with text -->
+            <div class="hidden sm:flex gap-2 sm:gap-3 w-full sm:w-auto justify-center sm:justify-end">
+                <button onclick="openSettings()" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center gap-2 font-exo text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span class="hidden sm:inline">Settings</span>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Message Box - Global Pop-up -->
-    <div id="messageBox" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-4 rounded-xl shadow-2xl border text-center font-semibold hidden max-w-md mx-4 backdrop-blur-sm transition-all duration-300"></div>
+    <div id="messageBox" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-2 sm:p-4 rounded-xl shadow-2xl border text-center font-semibold hidden max-w-xs sm:max-w-md mx-2 sm:mx-4 backdrop-blur-sm transition-all duration-300 text-sm sm:text-base"></div>
 
     <!-- Main Game Container -->
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
             <!-- Left Panel: Mining Area -->
-            <div class="lg:col-span-1">
-                <div class="glass rounded-2xl p-6 shadow-2xl border border-blue-500/20">
-                    <div class="text-center mb-6">
-                        <h2 class="text-3xl font-bold mb-2 text-green-400 flex items-center justify-center gap-2 font-orbitron neon-text">
+            <div class="lg:col-span-1 mb-4 lg:mb-0">
+                <div class="glass rounded-2xl p-4 sm:p-6 shadow-2xl border border-blue-500/20 mb-4 relative">
+                    <!-- Info Button for Mobile -->
+                    <button id="openStatsModalBtn" class="absolute top-2 right-2 sm:hidden bg-gray-700 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400" aria-label="Show Mining Stats">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <div class="text-center mb-4 sm:mb-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-green-400 flex items-center justify-center gap-2 font-orbitron neon-text text-center">
                             <svg class="w-8 h-8 animate-float" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
+                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.48 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
                             </svg>
                             Mining Rig
                         </h2>
                     </div>
-
                     <!-- Balance Display -->
-                    <div class="text-center mb-8 p-6 bg-gray-800/50 rounded-xl border border-gray-600/30 backdrop-blur-sm">
-                        <p class="text-lg text-gray-400 mb-2 font-exo">💰 Current Balance</p>
-                        <p id="satoshisDisplay" class="text-4xl md:text-5xl font-black text-white mb-2 animate-pulse-slow font-jetbrains neon-text">0 sats</p>
-                        <div class="flex items-center justify-center gap-2 text-sm text-gray-500 font-exo">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
-                            </svg>
-                            <span id="satoshiRate">0 sats/second</span>
+                    <div class="text-center mb-6 sm:mb-8 p-4 sm:p-6 bg-gray-800/50 rounded-2xl border border-gray-600/30 backdrop-blur-sm">
+                        <p class="text-base sm:text-lg text-gray-400 mb-2 font-exo">💰 Current Balance</p>
+                        <p id="satoshisDisplay" class="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-2 animate-pulse-slow font-jetbrains neon-text">0 sats</p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-gray-500 font-exo">
+                            <div class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                                </svg>
+                                <span id="satoshiRate">0 sats/second</span>
+                            </div>
                         </div>
                     </div>
-
                     <!-- Mining Button -->
-                    <div class="text-center mb-6">
-                        <button id="mineButton" class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-white font-bold py-6 px-8 rounded-2xl text-2xl shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/50 flex items-center justify-center space-x-3 w-full group font-orbitron shimmer">
+                    <div class="text-center mb-4 sm:mb-6">
+                        <button id="mineButton" class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-white font-bold py-5 sm:py-6 px-4 sm:px-8 rounded-2xl text-xl sm:text-2xl shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/50 flex items-center justify-center space-x-3 group font-orbitron shimmer mb-2">
                             <svg class="w-8 h-8 group-hover:animate-bounce-slow" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
+                                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.48 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
                             </svg>
                             <span>Mine Satoshis!</span>
                         </button>
-                        <p id="clickValueDisplay" class="text-md text-gray-400 mt-4 font-exo">Getting 1 sat per click</p>
+                        <p id="clickValueDisplay" class="text-base sm:text-md text-gray-400 mt-2 sm:mt-4 font-exo">Getting 1 sat per click</p>
                         <p class="text-xs text-gray-500 mt-2 font-exo">💡 Press Space or Enter to mine faster!</p>
                     </div>
-
-                    <!-- Stats Panel -->
-                    <div class="bg-gray-800/50 rounded-xl p-4 border border-gray-600/30 backdrop-blur-sm">
-                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2 font-orbitron">
+                    <!-- Stats Panel (hidden on mobile, visible on sm+) -->
+                    <div class="bg-gray-800/50 rounded-2xl p-4 sm:p-4 border border-gray-600/30 backdrop-blur-sm mb-2 hidden sm:block" id="miningStatsPanel">
+                        <h3 class="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3 flex items-center gap-2 font-orbitron text-center justify-center">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
                             Mining Stats
                         </h3>
-                        <div class="space-y-2 text-sm font-exo">
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Total Mined:</span>
+                        <div class="flex flex-col gap-1 sm:gap-2 text-base sm:text-sm font-exo">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Total Mined:</span>
                                 <span id="totalMined" class="text-white font-semibold font-jetbrains">0 sats</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Clicks:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Clicks:</span>
                                 <span id="totalClicks" class="text-white font-semibold font-jetbrains">0</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Time Played:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Time Played:</span>
                                 <span id="timePlayed" class="text-white font-semibold font-jetbrains">0s</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Prestige Level:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Prestige Level:</span>
                                 <span id="prestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text">0</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Prestige Multiplier:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Prestige Multiplier:</span>
                                 <span id="prestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text">1.0x</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Rebirth Level:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Rebirth Level:</span>
                                 <span id="rebirthLevel" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Rebirth Points:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Rebirth Points:</span>
                                 <span id="rebirthPoints" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Rebirth Multiplier:</span>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Rebirth Multiplier:</span>
                                 <span id="rebirthMultiplier" class="text-orange-400 font-semibold font-jetbrains neon-text">1.0x</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Mining Stats Modal for Mobile -->
+                <div id="miningStatsModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden sm:hidden">
+                    <div class="bg-gray-900 rounded-2xl p-6 w-full max-w-xs mx-4 shadow-2xl border border-gray-700 relative">
+                        <button id="closeStatsModalBtn" class="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl font-bold focus:outline-none" aria-label="Close Stats Modal">&times;</button>
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2 font-orbitron text-center justify-center">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            Mining Stats
+                        </h3>
+                        <div class="flex flex-col gap-2 text-base font-exo">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Total Mined:</span>
+                                <span id="modalTotalMined" class="text-white font-semibold font-jetbrains">0 sats</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Clicks:</span>
+                                <span id="modalTotalClicks" class="text-white font-semibold font-jetbrains">0</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Time Played:</span>
+                                <span id="modalTimePlayed" class="text-white font-semibold font-jetbrains">0s</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Prestige Level:</span>
+                                <span id="modalPrestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text">0</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Prestige Multiplier:</span>
+                                <span id="modalPrestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Rebirth Level:</span>
+                                <span id="modalRebirthLevel" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Rebirth Points:</span>
+                                <span id="modalRebirthPoints" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Rebirth Multiplier:</span>
+                                <span id="modalRebirthMultiplier" class="text-orange-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Right Panel: Upgrades and Market -->
-            <div class="lg:col-span-2">
-                <div class="space-y-6">
-                    
+            <div class="lg:col-span-2 mb-4 lg:mb-0">
+                <div class="space-y-4 sm:space-y-6">
                     <!-- Tabbed Interface -->
-                    <div class="glass rounded-2xl shadow-2xl border border-gray-600">
+                    <div class="glass rounded-2xl shadow-2xl border border-gray-600 mb-4">
                         <!-- Tab Headers -->
-                        <div class="flex border-b border-gray-600">
-                            <button id="rigTab" class="flex-1 py-4 px-6 text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500/50 font-orbitron" onclick="switchTab('rig')">
+                        <div class="flex flex-col sm:flex-row border-b border-gray-600">
+                            <button id="rigTab" class="flex-1 py-4 sm:py-5 px-4 sm:px-6 text-lg sm:text-xl font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-xl" onclick="switchTab('rig')">
                                 <div class="flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -146,7 +195,7 @@
                                     Rig Upgrades
                                 </div>
                             </button>
-                            <button id="rebirthTab" class="flex-1 py-4 px-6 text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 font-orbitron" onclick="switchTab('rebirth')">
+                            <button id="rebirthTab" class="flex-1 py-4 sm:py-5 px-4 sm:px-6 text-lg sm:text-xl font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-none" onclick="switchTab('rebirth')">
                                 <div class="flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -154,7 +203,7 @@
                                     Rebirth
                                 </div>
                             </button>
-                            <button id="marketTab" class="flex-1 py-4 px-6 text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 font-orbitron" onclick="switchTab('market')">
+                            <button id="marketTab" class="flex-1 py-4 sm:py-5 px-4 sm:px-6 text-lg sm:text-xl font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-r-xl" onclick="switchTab('market')">
                                 <div class="flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -163,9 +212,8 @@
                                 </div>
                             </button>
                         </div>
-
                         <!-- Tab Content -->
-                        <div class="p-6">
+                        <div class="p-2 sm:p-6">
                             <!-- Rig Upgrades Tab -->
                             <div id="rigContent" class="tab-content">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -413,22 +461,6 @@
                     Load Game
                 </button>
                 
-                <!-- Prestige -->
-                <button onclick="prestige(); closeSettings();" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 font-exo">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                    Prestige (1M+ Satoshis)
-                </button>
-                
-                <!-- Rebirth -->
-                <button onclick="rebirth(); closeSettings();" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 flex items-center justify-center gap-2 font-exo">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                    Rebirth (10M+ Satoshis)
-                </button>
-                
                 <!-- Reset Game -->
                 <button onclick="resetGame(); closeSettings();" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -450,5 +482,34 @@
     <script src="js/ui.js"></script>
     <script src="js/upgrades.js"></script>
     <script src="js/saveLoad.js"></script>
+    <script>
+    // Mobile Mining Stats Modal Logic
+    const openStatsModalBtn = document.getElementById('openStatsModalBtn');
+    const miningStatsModal = document.getElementById('miningStatsModal');
+    const closeStatsModalBtn = document.getElementById('closeStatsModalBtn');
+
+    if (openStatsModalBtn && miningStatsModal && closeStatsModalBtn) {
+        openStatsModalBtn.addEventListener('click', () => {
+            // Copy stats from main panel to modal
+            document.getElementById('modalTotalMined').textContent = document.getElementById('totalMined').textContent;
+            document.getElementById('modalTotalClicks').textContent = document.getElementById('totalClicks').textContent;
+            document.getElementById('modalTimePlayed').textContent = document.getElementById('timePlayed').textContent;
+            document.getElementById('modalPrestigeLevel').textContent = document.getElementById('prestigeLevel').textContent;
+            document.getElementById('modalPrestigeMultiplier').textContent = document.getElementById('prestigeMultiplier').textContent;
+            document.getElementById('modalRebirthLevel').textContent = document.getElementById('rebirthLevel').textContent;
+            document.getElementById('modalRebirthPoints').textContent = document.getElementById('rebirthPoints').textContent;
+            document.getElementById('modalRebirthMultiplier').textContent = document.getElementById('rebirthMultiplier').textContent;
+            miningStatsModal.classList.remove('hidden');
+        });
+        closeStatsModalBtn.addEventListener('click', () => {
+            miningStatsModal.classList.add('hidden');
+        });
+        miningStatsModal.addEventListener('click', (e) => {
+            if (e.target === miningStatsModal) {
+                miningStatsModal.classList.add('hidden');
+            }
+        });
+    }
+    </script>
 </body>
 </html>
