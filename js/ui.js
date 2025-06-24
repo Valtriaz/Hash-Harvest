@@ -39,20 +39,14 @@ export const renderUI = () => {
     document.getElementById('efficiencyCost').textContent = `Cost: ${s.efficiency.cost} Rebirth Points`;
     document.getElementById('luckLevel').textContent = `Level: ${s.luck.level}`;
     document.getElementById('luckCost').textContent = `Cost: ${s.luck.cost} Rebirth Points`;
-    // Progress
-    const rebirthProgress = document.getElementById('rebirthProgress');
-    const rebirthRequirement = document.getElementById('rebirthRequirement');
-    if (rebirthProgress && rebirthRequirement) {
-        const req = getRebirthRequirement(s.rebirthLevel);
-        rebirthProgress.textContent = `${s.totalMined.toLocaleString()} sats`;
-        rebirthRequirement.textContent = `${req.toLocaleString()}+ sats`;
-        if (s.totalMined >= req) {
-            rebirthProgress.className = 'text-green-400 font-jetbrains font-bold neon-text';
-        } else if (s.totalMined >= req * 0.5) {
-            rebirthProgress.className = 'text-yellow-400 font-jetbrains font-bold';
-        } else {
-            rebirthProgress.className = 'text-red-400 font-jetbrains font-bold';
-        }
+    // Rebirth Progress Bar
+    const rebirthProgressBar = document.getElementById('rebirthProgressBar');
+    const rebirthProgressText = document.getElementById('rebirthProgressText');
+    const rebirthRequirement = window.getRebirthRequirement ? window.getRebirthRequirement(s.rebirthLevel) : 100000;
+    if (rebirthProgressBar && rebirthProgressText) {
+        const progress = Math.min(s.totalMined / rebirthRequirement, 1);
+        rebirthProgressBar.style.width = (progress * 100) + '%';
+        rebirthProgressText.textContent = `${s.totalMined.toLocaleString()} / ${rebirthRequirement.toLocaleString()} sats`;
     }
     const prestigeProgress = document.getElementById('prestigeProgress');
     const prestigeRequirement = document.getElementById('prestigeRequirement');

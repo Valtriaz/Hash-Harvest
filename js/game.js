@@ -37,7 +37,7 @@ const altcoins = {
 
 // Rebirth requirements progression (global)
 const REBIRTH_REQUIREMENTS = [
-    100_000, 500_000, 1_000_000, 2_000_000, 5_000_000, 10_000_000, 20_000_000, 50_000_000, 100_000_000
+    10_000, 25_000, 50_000, 100_000, 250_000, 500_000, 1_000_000, 2_000_000, 5_000_000, 10_000_000, 20_000_000, 50_000_000, 100_000_000
 ];
 
 export function getRebirthRequirement(level) {
