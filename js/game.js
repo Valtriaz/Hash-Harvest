@@ -1,3 +1,5 @@
+import { gameState } from './state.js';
+
 // Game State Variables
 let satoshis = 0;
 let miningPowerPerClick = 1;
@@ -34,19 +36,103 @@ const altcoins = {
 };
 
 // Rebirth requirements progression (global)
-const rebirthRequirements = [100000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000];
+const REBIRTH_REQUIREMENTS = [
+    100_000, 500_000, 1_000_000, 2_000_000, 5_000_000, 10_000_000, 20_000_000, 50_000_000, 100_000_000
+];
 
-// Returns the requirement for a given rebirth level (progresses infinitely)
-function getRebirthRequirement(level) {
-    if (level < rebirthRequirements.length) {
-        return rebirthRequirements[level];
+export function getRebirthRequirement(level) {
+    if (level < REBIRTH_REQUIREMENTS.length) {
+        return REBIRTH_REQUIREMENTS[level];
     } else {
-        // After the last value, double each time
-        return rebirthRequirements[rebirthRequirements.length - 1] * Math.pow(2, level - rebirthRequirements.length + 1);
+        return REBIRTH_REQUIREMENTS[REBIRTH_REQUIREMENTS.length - 1] * Math.pow(2, level - REBIRTH_REQUIREMENTS.length + 1);
     }
 }
 
-// --- Core Game Functions ---
+export function updateMiningPower() {
+    const s = gameState.getState();
+    let perClick = s.gpu.level * s.gpu.baseClick;
+    let perSecond = s.gpu.level * s.gpu.baseIdle;
+    perClick *= (1 + s.cooling.level * s.cooling.efficiencyBoost);
+    perSecond *= (1 + s.cooling.level * s.cooling.efficiencyBoost);
+    perClick *= (1 + s.quantumProcessor.level * s.quantumProcessor.megaBoost);
+    perSecond *= (1 + s.quantumProcessor.level * s.quantumProcessor.megaBoost);
+    perSecond += s.automation.level * s.automation.autoClickRate * perClick;
+    perClick *= s.prestigeMultiplier;
+    perSecond *= s.prestigeMultiplier;
+    perClick *= s.rebirthMultiplier;
+    perSecond *= s.rebirthMultiplier;
+    perClick *= (1 + s.miningBoost.level * s.miningBoost.boost);
+    perSecond *= (1 + s.miningBoost.level * s.miningBoost.boost);
+    perClick = Math.round(perClick * 100) / 100;
+    perSecond = Math.round(perSecond * 100) / 100;
+    gameState.updateState({ miningPowerPerClick: perClick, miningPowerPerSecond: perSecond });
+}
+
+export function mine() {
+    const s = gameState.getState();
+    const mined = s.miningPowerPerClick;
+    gameState.updateState({
+        satoshis: s.satoshis + mined,
+        totalMined: s.totalMined + mined,
+        totalClicks: s.totalClicks + 1
+    });
+}
+
+export function gameLoop() {
+    const s = gameState.getState();
+    const mined = s.miningPowerPerSecond;
+    gameState.updateState({
+        satoshis: s.satoshis + mined,
+        totalMined: s.totalMined + mined
+    });
+    fluctuatePrices();
+}
+
+export function fluctuatePrices() {
+    const s = gameState.getState();
+    const newAltcoins = { ...s.altcoins };
+    for (const key in newAltcoins) {
+        const coin = { ...newAltcoins[key] };
+        const change = coin.price * (Math.random() * 2 * coin.volatility - coin.volatility);
+        coin.price = Math.max(0.01, coin.price + change);
+        newAltcoins[key] = coin;
+    }
+    gameState.updateState({ altcoins: newAltcoins });
+}
+
+export function buyAltcoin(coinName) {
+    const s = gameState.getState();
+    const coin = s.altcoins[coinName];
+    if (!coin) return { success: false, message: `❌ Unknown altcoin: ${coinName}` };
+    if (s.satoshis >= coin.price) {
+        const newAltcoins = { ...s.altcoins };
+        newAltcoins[coinName] = { ...coin, holdings: coin.holdings + 1 };
+        gameState.updateState({
+            satoshis: s.satoshis - coin.price,
+            altcoins: newAltcoins
+        });
+        return { success: true, message: `📈 Bought 1 ${coinName}!` };
+    } else {
+        return { success: false, message: `❌ Not enough sats to buy 1 ${coinName}!` };
+    }
+}
+
+export function sellAltcoin(coinName) {
+    const s = gameState.getState();
+    const coin = s.altcoins[coinName];
+    if (!coin) return { success: false, message: `❌ Unknown altcoin: ${coinName}` };
+    if (coin.holdings > 0) {
+        const newAltcoins = { ...s.altcoins };
+        newAltcoins[coinName] = { ...coin, holdings: coin.holdings - 1 };
+        gameState.updateState({
+            satoshis: s.satoshis + coin.price,
+            altcoins: newAltcoins
+        });
+        return { success: true, message: `📉 Sold 1 ${coinName}!` };
+    } else {
+        return { success: false, message: `❌ No ${coinName} to sell!` };
+    }
+}
 
 function showMessage(message, type) {
     const messageBox = document.getElementById('messageBox');
@@ -79,106 +165,4 @@ function showMessage(message, type) {
             messageBox.classList.add('hidden');
         }, 300);
     }, 3000);
-}
-
-function updateMiningPower() {
-    // Base mining power from GPU level
-    miningPowerPerClick = gpu.level * gpu.baseClick;
-    miningPowerPerSecond = gpu.level * gpu.baseIdle;
-
-    // Apply cooling efficiency
-    miningPowerPerClick *= (1 + cooling.level * cooling.efficiencyBoost);
-    miningPowerPerSecond *= (1 + cooling.level * cooling.efficiencyBoost);
-
-    // Apply quantum processor boost
-    miningPowerPerClick *= (1 + quantumProcessor.level * quantumProcessor.megaBoost);
-    miningPowerPerSecond *= (1 + quantumProcessor.level * quantumProcessor.megaBoost);
-
-    // Apply automation auto-clicking
-    miningPowerPerSecond += automation.level * automation.autoClickRate * miningPowerPerClick;
-
-    // Apply prestige multiplier
-    miningPowerPerClick *= prestigeMultiplier;
-    miningPowerPerSecond *= prestigeMultiplier;
-
-    // Apply rebirth multiplier
-    miningPowerPerClick *= rebirthMultiplier;
-    miningPowerPerSecond *= rebirthMultiplier;
-
-    // Apply rebirth upgrades
-    miningPowerPerClick *= (1 + miningBoost.level * miningBoost.boost);
-    miningPowerPerSecond *= (1 + miningBoost.level * miningBoost.boost);
-
-    // Round to reasonable numbers
-    miningPowerPerClick = Math.round(miningPowerPerClick * 100) / 100;
-    miningPowerPerSecond = Math.round(miningPowerPerSecond * 100) / 100;
-
-    updateUI();
-}
-
-// --- Mining Function ---
-function mine() {
-    satoshis += miningPowerPerClick;
-    totalMined += miningPowerPerClick;
-    totalClicks++;
-    
-    const mineButton = document.getElementById('mineButton');
-    if (mineButton) {
-        // Remove shimmer and pulse to reset
-        mineButton.classList.remove('shimmer', 'mining-pulse');
-        // Force reflow to restart animation
-        void mineButton.offsetWidth;
-        // Add mining pulse
-        mineButton.classList.add('mining-pulse');
-        // After animation, restore shimmer
-        setTimeout(() => {
-            mineButton.classList.remove('mining-pulse');
-            mineButton.classList.add('shimmer');
-        }, 500);
-    }
-    
-    updateUI();
-}
-
-// --- Game Loop ---
-function gameLoop() {
-    satoshis += miningPowerPerSecond;
-    totalMined += miningPowerPerSecond;
-    fluctuatePrices();
-    updateUI();
-}
-
-// --- Altcoin Market Functions ---
-function fluctuatePrices() {
-    for (const key in altcoins) {
-        const coin = altcoins[key];
-        const change = coin.price * (Math.random() * 2 * coin.volatility - coin.volatility);
-        coin.price = Math.max(0.01, coin.price + change);
-    }
-}
-
-function buyAltcoin(coinName) {
-    const coin = altcoins[coinName];
-    if (satoshis >= coin.price) {
-        satoshis -= coin.price;
-        coin.holdings += 1;
-        showMessage(`📈 Bought 1 ${coinName}!`, 'success');
-        updateUI();
-    } else {
-        showMessage(`❌ Not enough sats to buy 1 ${coinName}!`, 'error');
-    }
-}
-
-function sellAltcoin(coinName) {
-    const coin = altcoins[coinName];
-    if (coin.holdings > 0) {
-        satoshis += coin.price;
-        coin.holdings -= 1;
-        showMessage(`📉 Sold 1 ${coinName}!`, 'success');
-        updateUI();
-    } else {
-        showMessage(`❌ No ${coinName} to sell!`, 'error');
-    }
-}
-
-window.getRebirthRequirement = getRebirthRequirement; 
+} 
