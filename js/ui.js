@@ -1,40 +1,5 @@
 // UI Management Functions
 
-function updateMiningPower() {
-    // Base mining power from GPU level
-    miningPowerPerClick = gpu.level * gpu.baseClick;
-    miningPowerPerSecond = gpu.level * gpu.baseIdle;
-
-    // Apply cooling efficiency
-    miningPowerPerClick *= (1 + cooling.level * cooling.efficiencyBoost);
-    miningPowerPerSecond *= (1 + cooling.level * cooling.efficiencyBoost);
-
-    // Apply quantum processor boost
-    miningPowerPerClick *= (1 + quantumProcessor.level * quantumProcessor.megaBoost);
-    miningPowerPerSecond *= (1 + quantumProcessor.level * quantumProcessor.megaBoost);
-
-    // Apply automation auto-clicking
-    miningPowerPerSecond += automation.level * automation.autoClickRate * miningPowerPerClick;
-
-    // Apply prestige multiplier
-    miningPowerPerClick *= prestigeMultiplier;
-    miningPowerPerSecond *= prestigeMultiplier;
-
-    // Apply rebirth multiplier
-    miningPowerPerClick *= rebirthMultiplier;
-    miningPowerPerSecond *= rebirthMultiplier;
-
-    // Apply rebirth upgrades
-    miningPowerPerClick *= (1 + miningBoost.level * miningBoost.boost);
-    miningPowerPerSecond *= (1 + miningBoost.level * miningBoost.boost);
-
-    // Round to reasonable numbers
-    miningPowerPerClick = Math.round(miningPowerPerClick * 100) / 100;
-    miningPowerPerSecond = Math.round(miningPowerPerSecond * 100) / 100;
-
-    updateUI();
-}
-
 function updateUI() {
     const satoshisDisplay = document.getElementById('satoshisDisplay');
     const satoshiRate = document.getElementById('satoshiRate');
