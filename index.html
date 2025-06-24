@@ -19,7 +19,7 @@
                     🚀 Mining Mania
                 </h1>
                 <!-- Mobile: Icon-only settings button -->
-                <button onclick="openSettings()" class="ml-2 sm:hidden w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
+                <button id="openSettingsBtnMobile" class="ml-2 sm:hidden w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -28,7 +28,7 @@
             </div>
             <!-- Desktop: Button with text -->
             <div class="hidden sm:flex gap-2 sm:gap-3 w-full sm:w-auto justify-center sm:justify-end">
-                <button onclick="openSettings()" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center gap-2 font-exo text-lg" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
+                <button id="openSettingsBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center gap-2 font-exo text-lg" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -186,20 +186,20 @@
                     <!-- Tabbed Interface -->
                     <div class="glass rounded-2xl shadow-2xl border border-gray-600 mb-4">
                         <div id="tabBar" class="flex flex-nowrap sm:flex-row overflow-x-auto sticky top-0 z-10 bg-gray-900/80 rounded-t-2xl border-b border-gray-600" role="tablist">
-                            <button id="rigTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-xl tab-btn" onclick="switchTabSlider(0)" aria-selected="true" aria-controls="rigContent" role="tab" tabindex="0">
+                            <button id="rigTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-xl tab-btn" aria-selected="true" aria-controls="rigContent" role="tab" tabindex="0">
                                 <span class="flex flex-col items-center justify-center gap-1">
                                     <svg class="w-5 h-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                     <span class="text-xs sm:text-base">Rig</span>
                                     <span class="hidden sm:inline">Upgrades</span>
                                 </span>
                             </button>
-                            <button id="rebirthTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-none tab-btn" onclick="switchTabSlider(1)" aria-selected="false" aria-controls="rebirthContent" role="tab" tabindex="-1">
+                            <button id="rebirthTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-l-none tab-btn" aria-selected="false" aria-controls="rebirthContent" role="tab" tabindex="-1">
                                 <span class="flex flex-col items-center justify-center gap-1">
                                     <svg class="w-5 h-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                     <span class="text-xs sm:text-base">Rebirth</span>
                                 </span>
                             </button>
-                            <button id="marketTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-r-xl tab-btn" onclick="switchTabSlider(2)" aria-selected="false" aria-controls="marketContent" role="tab" tabindex="-1">
+                            <button id="marketTab" class="flex-1 min-w-[90px] py-4 px-2 text-base sm:text-lg font-semibold text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 font-orbitron rounded-t-xl sm:rounded-t-none sm:rounded-r-xl tab-btn" aria-selected="false" aria-controls="marketContent" role="tab" tabindex="-1">
                                 <span class="flex flex-col items-center justify-center gap-1">
                                     <svg class="w-5 h-5 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                     <span class="text-xs sm:text-base">Market</span>
@@ -455,7 +455,7 @@
                                                 <p id="rebirthProgress" class="text-red-400 font-jetbrains font-bold">18 sats</p>
                                             </div>
                                         </div>
-                                        <button onclick="rebirth()" class="bg-gradient-to-r from-orange-600 via-red-500 to-orange-600 hover:from-orange-700 hover:via-red-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-500/50 flex items-center justify-center gap-3 mx-auto font-orbitron shimmer mb-2" id="rebirthNowButton">
+                                        <button id="rebirthNowButton" class="bg-gradient-to-r from-orange-600 via-red-500 to-orange-600 hover:from-orange-700 hover:via-red-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-500/50 flex items-center justify-center gap-3 mx-auto font-orbitron shimmer mb-2">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                                             </svg>
@@ -609,7 +609,7 @@
                                                 <p id="prestigeProgress" class="text-blue-400 font-jetbrains font-bold">0 sats</p>
                                             </div>
                                         </div>
-                                        <button onclick="prestige()" class="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 hover:from-purple-700 hover:via-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-purple-500/50 flex items-center justify-center gap-3 mx-auto font-orbitron shimmer mb-2" id="prestigeNowButton">
+                                        <button id="prestigeNowButton" class="bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 hover:from-purple-700 hover:via-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-purple-500/50 flex items-center justify-center gap-3 mx-auto font-orbitron shimmer mb-2">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                                             </svg>
@@ -639,7 +639,7 @@
                 <button id="loadGameBtn" class="btn bg-green-600 hover:bg-green-700 text-white w-full" aria-label="Load Game">📂 Load Game</button>
                 <button id="resetGameBtn" class="btn bg-red-600 hover:bg-red-700 text-white w-full" aria-label="Reset Game">🗑️ Reset Game</button>
             </div>
-            <button onclick="closeSettings()" class="btn bg-gray-700 text-white mt-4 w-full" aria-label="Close Settings">Close</button>
+            <button id="closeSettingsBtn" class="btn bg-gray-700 text-white mt-4 w-full" aria-label="Close Settings">Close</button>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 import { gameState } from './state.js';
 import { getRebirthRequirement, canRebirth } from './rebirth.js';
+import { getPrestigeRequirement, canPrestige } from './prestige.js';
 
 // UI rendering functions
 export const renderUI = () => {
@@ -15,12 +16,24 @@ export const renderUI = () => {
     const minutes = Math.floor((timeElapsed % 3600) / 60);
     const seconds = timeElapsed % 60;
     document.getElementById('timePlayed').textContent = `${hours}h ${minutes}m ${seconds}s`;
+
+    // Update mobile stats modal as well
+    document.getElementById('modalTotalMined').textContent = `${s.totalMined.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats`;
+    document.getElementById('modalTotalClicks').textContent = s.totalClicks.toLocaleString();
+    document.getElementById('modalTimePlayed').textContent = `${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById('modalPrestigeLevel').textContent = s.prestigeLevel;
+    document.getElementById('modalPrestigeMultiplier').textContent = `${s.prestigeMultiplier.toFixed(1)}x`;
+    document.getElementById('modalRebirthLevel').textContent = s.rebirthLevel;
+    document.getElementById('modalRebirthPoints').textContent = s.rebirthPoints;
+    document.getElementById('modalRebirthMultiplier').textContent = `${s.rebirthMultiplier.toFixed(1)}x`;
+
     // Prestige/Rebirth
     document.getElementById('prestigeLevel').textContent = s.prestigeLevel;
     document.getElementById('prestigeMultiplier').textContent = `${s.prestigeMultiplier.toFixed(1)}x`;
-    document.getElementById('rebirthLevel').textContent = s.rebirthLevel;
-    document.getElementById('rebirthPoints').textContent = s.rebirthPoints;
-    document.getElementById('rebirthMultiplier').textContent = `${s.rebirthMultiplier.toFixed(1)}x`;
+    // Note: Your HTML has duplicate IDs which is invalid. Using querySelectorAll to update all instances.
+    document.querySelectorAll('#rebirthLevel').forEach(el => el.textContent = s.rebirthLevel);
+    document.querySelectorAll('#rebirthPoints').forEach(el => el.textContent = s.rebirthPoints);
+    document.querySelectorAll('#rebirthMultiplier').forEach(el => el.textContent = `${s.rebirthMultiplier.toFixed(1)}x`);
     // Upgrades
     document.getElementById('gpuLevel').textContent = `Level: ${s.gpu.level}`;
     document.getElementById('gpuCost').textContent = `Cost: ${s.gpu.cost.toLocaleString()} sats`;
@@ -32,6 +45,17 @@ export const renderUI = () => {
     document.getElementById('quantumCost').textContent = `Cost: ${s.quantumProcessor.cost.toLocaleString()} sats`;
     document.getElementById('automationLevel').textContent = `Level: ${s.automation.level}`;
     document.getElementById('automationCost').textContent = `Cost: ${s.automation.cost.toLocaleString()} sats`;
+    // Mobile upgrades
+    document.getElementById('gpuLevelMobile').textContent = `Level: ${s.gpu.level}`;
+    document.getElementById('gpuCostMobile').textContent = `Cost: ${s.gpu.cost.toLocaleString()} sats`;
+    document.getElementById('coolingLevelMobile').textContent = `Level: ${s.cooling.level}`;
+    document.getElementById('coolingCostMobile').textContent = `Cost: ${s.cooling.cost.toLocaleString()} sats`;
+    document.getElementById('powerSupplyLevelMobile').textContent = `Level: ${s.powerSupply.level}`;
+    document.getElementById('powerSupplyCostMobile').textContent = `Cost: ${s.powerSupply.cost.toLocaleString()} sats`;
+    document.getElementById('quantumLevelMobile').textContent = `Level: ${s.quantumProcessor.level}`;
+    document.getElementById('quantumCostMobile').textContent = `Cost: ${s.quantumProcessor.cost.toLocaleString()} sats`;
+    document.getElementById('automationLevelMobile').textContent = `Level: ${s.automation.level}`;
+    document.getElementById('automationCostMobile').textContent = `Cost: ${s.automation.cost.toLocaleString()} sats`;
     // Rebirth upgrades
     document.getElementById('miningBoostLevel').textContent = `Level: ${s.miningBoost.level}`;
     document.getElementById('miningBoostCost').textContent = `Cost: ${s.miningBoost.cost} Rebirth Points`;
@@ -39,6 +63,13 @@ export const renderUI = () => {
     document.getElementById('efficiencyCost').textContent = `Cost: ${s.efficiency.cost} Rebirth Points`;
     document.getElementById('luckLevel').textContent = `Level: ${s.luck.level}`;
     document.getElementById('luckCost').textContent = `Cost: ${s.luck.cost} Rebirth Points`;
+    // Mobile Rebirth upgrades
+    document.getElementById('miningBoostLevelMobile').textContent = `Level: ${s.miningBoost.level}`;
+    document.getElementById('miningBoostCostMobile').textContent = `Cost: ${s.miningBoost.cost} RP`;
+    document.getElementById('efficiencyLevelMobile').textContent = `Level: ${s.efficiency.level}`;
+    document.getElementById('efficiencyCostMobile').textContent = `Cost: ${s.efficiency.cost} RP`;
+    document.getElementById('luckLevelMobile').textContent = `Level: ${s.luck.level}`;
+    document.getElementById('luckCostMobile').textContent = `Cost: ${s.luck.cost} RP`;
     // Rebirth System - use currentRebirthNo for all requirements
     const currentRebirthNo = s.rebirthLevel;
     const rebirthRequirementElem = document.getElementById('rebirthRequirement');
@@ -47,7 +78,7 @@ export const renderUI = () => {
     const currentRequirement = getRebirthRequirement(currentRebirthNo);
     const nextRequirement = getRebirthRequirement(currentRebirthNo + 1);
     if (rebirthRequirementElem) {
-        rebirthRequirementElem.textContent = `${currentRequirement.toLocaleString()}+ sats`;
+        rebirthRequirementElem.textContent = `Next Rebirth Requirement: ${currentRequirement.toLocaleString()}+ sats`;
     }
     if (rebirthNextRequirementElem) {
         rebirthNextRequirementElem.textContent = `Next: ${nextRequirement.toLocaleString()}+ sats`;
@@ -55,26 +86,31 @@ export const renderUI = () => {
     if (rebirthNowButton) {
         rebirthNowButton.disabled = !canRebirth(s);
     }
-    const rebirthProgressBar = document.getElementById('rebirthProgressBar');
-    const rebirthProgressText = document.getElementById('rebirthProgressText');
-    if (rebirthProgressBar && rebirthProgressText) {
-        const progress = Math.min(s.totalMined / currentRequirement, 1);
-        rebirthProgressBar.style.width = (progress * 100) + '%';
-        rebirthProgressText.textContent = `${s.totalMined.toLocaleString()} / ${currentRequirement.toLocaleString()} sats to next rebirth`;
+    const rebirthProgress = document.getElementById('rebirthProgress');
+    if (rebirthProgress) {
+        rebirthProgress.textContent = `${s.totalMined.toLocaleString(undefined, { maximumFractionDigits: 0 })} sats`;
+        rebirthProgress.classList.toggle('text-green-400', canRebirth(s));
+    }
+    // Prestige System - use currentPrestigeNo for all requirements
+    const currentPrestigeNo = s.prestigeLevel;
+    const prestigeRequirementElem = document.getElementById('prestigeRequirement');
+    const prestigeNextRequirementElem = document.getElementById('prestigeNextRequirement');
+    const prestigeNowButton = document.getElementById('prestigeNowButton');
+    const currentPrestigeRequirement = getPrestigeRequirement(currentPrestigeNo);
+    const nextPrestigeRequirement = getPrestigeRequirement(currentPrestigeNo + 1);
+    if (prestigeRequirementElem) {
+        prestigeRequirementElem.textContent = `${currentPrestigeRequirement.toLocaleString(undefined, { notation: 'compact', compactDisplay: 'short' })}+ sats`;
+    }
+    if (prestigeNowButton) {
+        prestigeNowButton.disabled = !canPrestige(s);
+    }
+    if (prestigeNextRequirementElem) {
+        prestigeNextRequirementElem.textContent = `Next: ${nextPrestigeRequirement.toLocaleString()}+ sats`;
     }
     const prestigeProgress = document.getElementById('prestigeProgress');
-    const prestigeRequirement = document.getElementById('prestigeRequirement');
-    if (prestigeProgress && prestigeRequirement) {
-        const req = 1_000_000;
-        prestigeProgress.textContent = `${s.totalMined.toLocaleString()} sats`;
-        prestigeRequirement.textContent = `${req.toLocaleString()}+ sats`;
-        if (s.totalMined >= req) {
-            prestigeProgress.className = 'text-green-400 font-jetbrains font-bold neon-text';
-        } else if (s.totalMined >= req * 0.5) {
-            prestigeProgress.className = 'text-yellow-400 font-jetbrains font-bold';
-        } else {
-            prestigeProgress.className = 'text-red-400 font-jetbrains font-bold';
-        }
+    if (prestigeProgress) {
+        prestigeProgress.textContent = `${s.totalMined.toLocaleString(undefined, { maximumFractionDigits: 0 })} sats`;
+        prestigeProgress.classList.toggle('text-green-400', canPrestige(s));
     }
     // Altcoin Market
     renderAltcoinMarket(s);
@@ -154,7 +190,11 @@ const updateButtonStates = (s) => {
     const rebirths = [
         { id: 'buyMiningBoostButton', cost: s.miningBoost.cost },
         { id: 'buyEfficiencyButton', cost: s.efficiency.cost },
-        { id: 'buyLuckButton', cost: s.luck.cost }
+        { id: 'buyLuckButton', cost: s.luck.cost },
+        // Mobile + buttons
+        { id: 'buyMiningBoostButtonMobile', cost: s.miningBoost.cost },
+        { id: 'buyEfficiencyButtonMobile', cost: s.efficiency.cost },
+        { id: 'buyLuckButtonMobile', cost: s.luck.cost }
     ];
     rebirths.forEach(({ id, cost }) => {
         const btn = document.getElementById(id);
@@ -192,4 +232,4 @@ export const showMessage = (message, type) => {
     }, 3000);
 };
 
-gameState.subscribe(renderUI); 
+gameState.subscribe(renderUI);

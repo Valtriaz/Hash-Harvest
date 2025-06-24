@@ -1,13 +1,11 @@
 // Main entry point for Mining Mania
 // Handles initialization and event listeners
-import { loadGame, saveGame, prestige, rebirth, resetGame, openSettings, closeSettings } from './saveLoad.js';
-import { updateMiningPower, gameLoop, mine, getRebirthRequirement } from './game.js';
+import { loadGame, saveGame, resetGame, openSettings, closeSettings } from './saveLoad.js';
+import { updateMiningPower, gameLoop, mine } from './game.js';
 import { buyGpu, buyCooling, buyPowerSupply, buyQuantum, buyAutomation, buyMiningBoost, buyEfficiency, buyLuck } from './upgrades.js';
-import { gameState } from './state.js';
-import { renderUI, showMessage } from './ui.js';
+import { renderUI } from './ui.js';
 import { doRebirth } from './rebirth.js';
-
-window.getRebirthRequirement = getRebirthRequirement;
+import { doPrestige } from './prestige.js';
 
 // --- Tab Switching Logic ---
 function switchTabSlider(tabIndex) {
@@ -25,9 +23,14 @@ function switchTabSlider(tabIndex) {
         if (btn) {
             btn.setAttribute('aria-selected', i === tabIndex ? 'true' : 'false');
             btn.tabIndex = i === tabIndex ? 0 : -1;
-            btn.classList.toggle('bg-purple-600', i === tabIndex && i === 0);
-            btn.classList.toggle('bg-orange-600', i === tabIndex && i === 1);
-            btn.classList.toggle('bg-teal-600', i === tabIndex && i === 2);
+            // Reset colors
+            btn.classList.remove('bg-purple-600', 'bg-orange-600', 'bg-teal-600', 'hover:bg-gray-700');
+            btn.classList.add('hover:bg-gray-700'); // re-add default hover
+            // Apply active color
+            if (i === tabIndex) {
+                btn.classList.add(i === 0 ? 'bg-purple-600' : i === 1 ? 'bg-orange-600' : 'bg-teal-600');
+                btn.classList.remove('hover:bg-gray-700');
+            }
             btn.classList.toggle('text-white', i === tabIndex);
             btn.classList.toggle('text-gray-400', i !== tabIndex);
         }
@@ -80,9 +83,8 @@ window.onload = () => {
     updateMiningPower();
     renderUI();
     setInterval(gameLoop, 1000);
-    setupEventListeners();
     setupTabListeners();
-    setupSettingsToggles();
+    setupEventListeners();
 };
 
 const setupEventListeners = () => {
@@ -98,22 +100,22 @@ const setupEventListeners = () => {
     const resetBtn = document.getElementById('resetGameBtn');
     if (resetBtn) resetBtn.addEventListener('click', resetGame);
 
+    // Settings modal open/close
+    const openSettingsBtn = document.getElementById('openSettingsBtn');
+    if (openSettingsBtn) openSettingsBtn.addEventListener('click', openSettings);
+    const openSettingsBtnMobile = document.getElementById('openSettingsBtnMobile');
+    if (openSettingsBtnMobile) openSettingsBtnMobile.addEventListener('click', openSettings);
+    const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+    if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', closeSettings);
+
     // Mining Rig Info Popup (mobile)
     const openStatsBtn = document.getElementById('openStatsModalBtn');
     const closeStatsBtn = document.getElementById('closeStatsModalBtn');
     const statsModal = document.getElementById('miningStatsModal');
     if (openStatsBtn && statsModal) {
         openStatsBtn.addEventListener('click', () => {
-            // Update modal stats
-            const s = gameState.getState();
-            document.getElementById('modalTotalMined').textContent = `${s.totalMined.toLocaleString()} sats`;
-            document.getElementById('modalTotalClicks').textContent = s.totalClicks.toLocaleString();
-            const timeElapsed = Math.floor((Date.now() - s.startTime) / 1000);
-            const hours = Math.floor(timeElapsed / 3600);
-            const minutes = Math.floor((timeElapsed % 3600) / 60);
-            const seconds = timeElapsed % 60;
-            document.getElementById('modalTimePlayed').textContent = `${hours}h ${minutes}m ${seconds}s`;
-            document.getElementById('modalPrestigeLevel').textContent = s.prestigeLevel;
+            // The renderUI function now updates the modal content automatically.
+            // This listener just needs to show the modal.
             statsModal.classList.remove('hidden');
         });
     }
@@ -135,13 +137,28 @@ const setupEventListeners = () => {
     const rebirthNowButton = document.getElementById('rebirthNowButton');
     if (rebirthNowButton) {
         rebirthNowButton.addEventListener('click', () => {
-            doRebirth(); // Actually perform rebirth
+            doRebirth();
             rebirthNowButton.classList.remove('shimmer', 'mining-pulse-orange');
             void rebirthNowButton.offsetWidth;
             rebirthNowButton.classList.add('mining-pulse-orange');
             setTimeout(() => {
                 rebirthNowButton.classList.remove('mining-pulse-orange');
                 rebirthNowButton.classList.add('shimmer');
+            }, 800);
+        });
+    }
+
+    // Prestige Now button animation and logic
+    const prestigeNowButton = document.getElementById('prestigeNowButton');
+    if (prestigeNowButton) {
+        prestigeNowButton.addEventListener('click', () => {
+            doPrestige();
+            prestigeNowButton.classList.remove('shimmer', 'mining-pulse-blue');
+            void prestigeNowButton.offsetWidth;
+            prestigeNowButton.classList.add('mining-pulse-blue');
+            setTimeout(() => {
+                prestigeNowButton.classList.remove('mining-pulse-blue');
+                prestigeNowButton.classList.add('shimmer');
             }, 800);
         });
     }
@@ -194,40 +211,14 @@ const setupUpgradeListeners = () => {
     const rebirths = [
         { id: 'buyMiningBoostButton', handler: buyMiningBoost },
         { id: 'buyEfficiencyButton', handler: buyEfficiency },
-        { id: 'buyLuckButton', handler: buyLuck }
+        { id: 'buyLuckButton', handler: buyLuck },
+        // Mobile + buttons
+        { id: 'buyMiningBoostButtonMobile', handler: buyMiningBoost },
+        { id: 'buyEfficiencyButtonMobile', handler: buyEfficiency },
+        { id: 'buyLuckButtonMobile', handler: buyLuck }
     ];
     rebirths.forEach(({ id, handler }) => {
         const btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', handler);
     });
 };
-
-function setupSettingsToggles() {
-    // Mute Sounds
-    const muteToggle = document.getElementById('muteSoundsToggle');
-    const muteKey = 'miningManiaMuteSounds';
-    if (muteToggle) {
-        // Load from storage
-        muteToggle.checked = localStorage.getItem(muteKey) === 'true';
-        muteToggle.addEventListener('change', () => {
-            localStorage.setItem(muteKey, muteToggle.checked);
-            // Future: trigger mute/unmute logic here
-        });
-    }
-    // Animations
-    const animToggle = document.getElementById('animationsToggle');
-    const animKey = 'miningManiaAnimations';
-    if (animToggle) {
-        // Load from storage
-        const enabled = localStorage.getItem(animKey);
-        animToggle.checked = enabled !== 'false'; // default ON
-        document.body.classList.toggle('no-animations', !animToggle.checked);
-        animToggle.addEventListener('change', () => {
-            localStorage.setItem(animKey, animToggle.checked);
-            document.body.classList.toggle('no-animations', !animToggle.checked);
-        });
-    }
-}
-
-window.openSettings = openSettings;
-window.closeSettings = closeSettings; 
