@@ -213,102 +213,202 @@
                                     
                                     <!-- GPU Upgrade -->
                                     <div class="bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <div class="flex items-center gap-3 mb-3">
+                                        <!-- Desktop/Laptop Layout -->
+                                        <div class="hidden sm:flex flex-row items-center gap-3 mb-3">
                                             <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
                                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
                                                 </svg>
                                             </div>
-                                            <div>
+                                            <div class="flex-1">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">GPU</h3>
                                                 <p class="text-gray-400 text-sm font-exo">Increase mining power & efficiency</p>
                                             </div>
                                         </div>
-                                        <p id="gpuLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 1</p>
-                                        <p id="gpuCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 10 sats</p>
-                                        <button id="buyGpuButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
+                                        <p id="gpuLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 1</p>
+                                        <p id="gpuCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains hidden sm:block">Cost: 10 sats</p>
+                                        <button id="buyGpuButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                             Upgrade GPU
                                         </button>
+                                        <!-- Mobile Layout -->
+                                        <div class="flex flex-row items-start mb-3 sm:hidden flex-nowrap">
+                                            <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="text-xl font-bold text-white font-orbitron">GPU</h3>
+                                                <p class="text-gray-400 text-sm font-exo mt-1">Increase mining power & efficiency</p>
+                                                <p id="gpuLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 1</p>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-3 flex-shrink-0">
+                                                <button id="buyGpuButtonMobile" class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-200 mb-1" aria-label="Upgrade GPU">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                                </button>
+                                                <p id="gpuCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 10 sats</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Cooling System Upgrade -->
                                     <div class="bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <div class="flex items-center gap-3 mb-3">
+                                        <!-- Desktop/Laptop Layout -->
+                                        <div class="hidden sm:flex flex-row items-center gap-3 mb-3">
                                             <div class="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center">
                                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                                 </svg>
                                             </div>
-                                            <div>
+                                            <div class="flex-1">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Cooling System</h3>
                                                 <p class="text-gray-400 text-sm font-exo">Boost overall mining efficiency</p>
                                             </div>
                                         </div>
-                                        <p id="coolingLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="coolingCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 50 sats</p>
-                                        <button id="buyCoolingButton" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
+                                        <p id="coolingLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p id="coolingCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains hidden sm:block">Cost: 50 sats</p>
+                                        <button id="buyCoolingButton" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                             Upgrade Cooling
                                         </button>
+                                        <!-- Mobile Layout -->
+                                        <div class="flex flex-row items-start mb-3 sm:hidden flex-nowrap">
+                                            <div class="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="text-xl font-bold text-white font-orbitron">Cooling System</h3>
+                                                <p class="text-gray-400 text-sm font-exo mt-1">Boost overall mining efficiency</p>
+                                                <p id="coolingLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-3 flex-shrink-0">
+                                                <button id="buyCoolingButtonMobile" class="flex items-center justify-center bg-cyan-600 hover:bg-cyan-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Cooling System">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                                </button>
+                                                <p id="coolingCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 50 sats</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Power Supply Upgrade -->
                                     <div class="bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-orange-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <div class="flex items-center gap-3 mb-3">
+                                        <!-- Desktop/Laptop Layout -->
+                                        <div class="hidden sm:flex flex-row items-center gap-3 mb-3">
                                             <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
                                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
                                                 </svg>
                                             </div>
-                                            <div>
+                                            <div class="flex-1">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Power Supply</h3>
                                                 <p class="text-gray-400 text-sm font-exo">Increase mining capacity & stability</p>
                                             </div>
                                         </div>
-                                        <p id="powerSupplyLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="powerSupplyCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 200 sats</p>
-                                        <button id="buyPowerSupplyButton" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
+                                        <p id="powerSupplyLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p id="powerSupplyCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains hidden sm:block">Cost: 200 sats</p>
+                                        <button id="buyPowerSupplyButton" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                             Upgrade Power Supply
                                         </button>
+                                        <!-- Mobile Layout -->
+                                        <div class="flex flex-row items-start mb-3 sm:hidden flex-nowrap">
+                                            <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="text-xl font-bold text-white font-orbitron">Power Supply</h3>
+                                                <p class="text-gray-400 text-sm font-exo mt-1">Increase mining capacity & stability</p>
+                                                <p id="powerSupplyLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-3 flex-shrink-0">
+                                                <button id="buyPowerSupplyButtonMobile" class="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Power Supply">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                                </button>
+                                                <p id="powerSupplyCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 200 sats</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Quantum Processor Upgrade -->
                                     <div class="bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-fuchsia-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <div class="flex items-center gap-3 mb-3">
+                                        <!-- Desktop/Laptop Layout -->
+                                        <div class="hidden sm:flex flex-row items-center gap-3 mb-3">
                                             <div class="w-10 h-10 bg-fuchsia-600 rounded-lg flex items-center justify-center">
                                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                                 </svg>
                                             </div>
-                                            <div>
+                                            <div class="flex-1">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Quantum Processor</h3>
                                                 <p class="text-gray-400 text-sm font-exo">Revolutionary mining technology</p>
                                             </div>
                                         </div>
-                                        <p id="quantumLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="quantumCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 1,000,000 sats</p>
-                                        <button id="buyQuantumButton" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
+                                        <p id="quantumLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p id="quantumCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains hidden sm:block">Cost: 1,000,000 sats</p>
+                                        <button id="buyQuantumButton" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                             Research Quantum
                                         </button>
+                                        <!-- Mobile Layout -->
+                                        <div class="flex flex-row items-start mb-3 sm:hidden flex-nowrap">
+                                            <div class="w-10 h-10 bg-fuchsia-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="text-xl font-bold text-white font-orbitron">Quantum Processor</h3>
+                                                <p class="text-gray-400 text-sm font-exo mt-1">Revolutionary mining technology</p>
+                                                <p id="quantumLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-3 flex-shrink-0">
+                                                <button id="buyQuantumButtonMobile" class="flex items-center justify-center bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 transition-all duration-200 mb-1" aria-label="Research Quantum Processor">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                                </button>
+                                                <p id="quantumCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 1,000,000 sats</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Mining Automation Upgrade -->
                                     <div class="bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <div class="flex items-center gap-3 mb-3">
+                                        <!-- Desktop/Laptop Layout -->
+                                        <div class="hidden sm:flex flex-row items-center gap-3 mb-3">
                                             <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
                                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                                 </svg>
                                             </div>
-                                            <div>
+                                            <div class="flex-1">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Mining Automation</h3>
                                                 <p class="text-gray-400 text-sm font-exo">Auto-click mining</p>
                                             </div>
                                         </div>
-                                        <p id="automationLevel" class="text-gray-300 text-sm mb-2 font-exo">Level: 0</p>
-                                        <p id="automationCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains">Cost: 5,000 sats</p>
-                                        <button id="buyAutomationButton" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo">
+                                        <p id="automationLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p id="automationCost" class="text-yellow-400 text-lg font-bold mb-4 font-jetbrains hidden sm:block">Cost: 5,000 sats</p>
+                                        <button id="buyAutomationButton" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                             Upgrade Automation
                                         </button>
+                                        <!-- Mobile Layout -->
+                                        <div class="flex flex-row items-start mb-3 sm:hidden flex-nowrap">
+                                            <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <h3 class="text-xl font-bold text-white font-orbitron">Mining Automation</h3>
+                                                <p class="text-gray-400 text-sm font-exo mt-1">Auto-click mining</p>
+                                                <p id="automationLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                            </div>
+                                            <div class="flex flex-col items-end ml-3 flex-shrink-0">
+                                                <button id="buyAutomationButtonMobile" class="flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Mining Automation">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                                </button>
+                                                <p id="automationCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 5,000 sats</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -423,7 +523,11 @@
     <div id="settingsModal" class="modal-backdrop hidden flex items-center justify-center p-2 sm:p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
         <div class="modal w-full max-w-xs sm:max-w-sm md:max-w-md mx-2 sm:mx-4 overflow-y-auto">
             <h2 id="settingsTitle" class="text-xl font-bold mb-4">Settings</h2>
-            <!-- Settings content here -->
+            <div class="mb-4 flex flex-col gap-3">
+                <button id="saveGameBtn" class="btn bg-blue-600 hover:bg-blue-700 text-white w-full" aria-label="Save Game">💾 Save Game</button>
+                <button id="loadGameBtn" class="btn bg-green-600 hover:bg-green-700 text-white w-full" aria-label="Load Game">📂 Load Game</button>
+                <button id="resetGameBtn" class="btn bg-red-600 hover:bg-red-700 text-white w-full" aria-label="Reset Game">🗑️ Reset Game</button>
+            </div>
             <button onclick="closeSettings()" class="btn bg-gray-700 text-white mt-4 w-full" aria-label="Close Settings">Close</button>
         </div>
     </div>

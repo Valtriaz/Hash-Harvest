@@ -79,12 +79,54 @@ window.onload = () => {
     setInterval(gameLoop, 1000);
     setupEventListeners();
     setupTabListeners();
+    setupSettingsToggles();
 };
 
 const setupEventListeners = () => {
     // Mining button
     const mineButton = document.getElementById('mineButton');
     if (mineButton) mineButton.addEventListener('click', mine);
+
+    // Save/Load/Reset buttons in settings
+    const saveBtn = document.getElementById('saveGameBtn');
+    if (saveBtn) saveBtn.addEventListener('click', saveGame);
+    const loadBtn = document.getElementById('loadGameBtn');
+    if (loadBtn) loadBtn.addEventListener('click', loadGame);
+    const resetBtn = document.getElementById('resetGameBtn');
+    if (resetBtn) resetBtn.addEventListener('click', resetGame);
+
+    // Mining Rig Info Popup (mobile)
+    const openStatsBtn = document.getElementById('openStatsModalBtn');
+    const closeStatsBtn = document.getElementById('closeStatsModalBtn');
+    const statsModal = document.getElementById('miningStatsModal');
+    if (openStatsBtn && statsModal) {
+        openStatsBtn.addEventListener('click', () => {
+            // Update modal stats
+            const s = gameState.getState();
+            document.getElementById('modalTotalMined').textContent = `${s.totalMined.toLocaleString()} sats`;
+            document.getElementById('modalTotalClicks').textContent = s.totalClicks.toLocaleString();
+            const timeElapsed = Math.floor((Date.now() - s.startTime) / 1000);
+            const hours = Math.floor(timeElapsed / 3600);
+            const minutes = Math.floor((timeElapsed % 3600) / 60);
+            const seconds = timeElapsed % 60;
+            document.getElementById('modalTimePlayed').textContent = `${hours}h ${minutes}m ${seconds}s`;
+            document.getElementById('modalPrestigeLevel').textContent = s.prestigeLevel;
+            statsModal.classList.remove('hidden');
+        });
+    }
+    if (closeStatsBtn && statsModal) {
+        closeStatsBtn.addEventListener('click', () => {
+            statsModal.classList.add('hidden');
+        });
+    }
+    // Close modal when clicking backdrop
+    if (statsModal) {
+        statsModal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                statsModal.classList.add('hidden');
+            }
+        });
+    }
 
     // Rebirth Now button animation
     const rebirthNowButton = document.getElementById('rebirthNowButton');
@@ -131,7 +173,13 @@ const setupUpgradeListeners = () => {
         { id: 'buyCoolingButton', handler: buyCooling },
         { id: 'buyPowerSupplyButton', handler: buyPowerSupply },
         { id: 'buyQuantumButton', handler: buyQuantum },
-        { id: 'buyAutomationButton', handler: buyAutomation }
+        { id: 'buyAutomationButton', handler: buyAutomation },
+        // Mobile + buttons
+        { id: 'buyGpuButtonMobile', handler: buyGpu },
+        { id: 'buyCoolingButtonMobile', handler: buyCooling },
+        { id: 'buyPowerSupplyButtonMobile', handler: buyPowerSupply },
+        { id: 'buyQuantumButtonMobile', handler: buyQuantum },
+        { id: 'buyAutomationButtonMobile', handler: buyAutomation }
     ];
     upgrades.forEach(({ id, handler }) => {
         const btn = document.getElementById(id);
@@ -148,4 +196,34 @@ const setupUpgradeListeners = () => {
         const btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', handler);
     });
-}; 
+};
+
+function setupSettingsToggles() {
+    // Mute Sounds
+    const muteToggle = document.getElementById('muteSoundsToggle');
+    const muteKey = 'miningManiaMuteSounds';
+    if (muteToggle) {
+        // Load from storage
+        muteToggle.checked = localStorage.getItem(muteKey) === 'true';
+        muteToggle.addEventListener('change', () => {
+            localStorage.setItem(muteKey, muteToggle.checked);
+            // Future: trigger mute/unmute logic here
+        });
+    }
+    // Animations
+    const animToggle = document.getElementById('animationsToggle');
+    const animKey = 'miningManiaAnimations';
+    if (animToggle) {
+        // Load from storage
+        const enabled = localStorage.getItem(animKey);
+        animToggle.checked = enabled !== 'false'; // default ON
+        document.body.classList.toggle('no-animations', !animToggle.checked);
+        animToggle.addEventListener('change', () => {
+            localStorage.setItem(animKey, animToggle.checked);
+            document.body.classList.toggle('no-animations', !animToggle.checked);
+        });
+    }
+}
+
+window.openSettings = openSettings;
+window.closeSettings = closeSettings; 

@@ -81,7 +81,7 @@ const renderAltcoinMarket = (s) => {
     for (const key in s.altcoins) {
         const coin = s.altcoins[key];
         const altcoinCard = document.createElement('div');
-        altcoinCard.className = 'bg-gray-800/70 p-5 rounded-xl shadow-lg border border-gray-700/50 hover:border-teal-500/50 transition-all duration-300 backdrop-blur-sm';
+        altcoinCard.className = 'altcoin-card';
         const colorClass = {
             'orange': 'bg-orange-600',
             'blue': 'bg-blue-600',
@@ -91,22 +91,30 @@ const renderAltcoinMarket = (s) => {
             'purple': 'bg-purple-600'
         }[coin.color] || 'bg-gray-600';
         altcoinCard.innerHTML = `
-            <div class="flex items-center gap-3 mb-3">
-                <div class="w-10 h-10 ${colorClass} rounded-lg flex items-center justify-center">
+            <div class="altcoin-header">
+                <div class="altcoin-icon ${colorClass}">
                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-white font-orbitron">${key}</h3>
-                    <p class="text-gray-400 text-sm font-exo">Current Price</p>
+                    <div class="altcoin-title">${key}</div>
+                    <div class="altcoin-sub">Current Price</div>
                 </div>
             </div>
-            <p class="text-gray-300 text-sm mb-2 font-exo">Price: <span class="text-yellow-400 font-bold font-jetbrains">${coin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats</span></p>
-            <p class="text-gray-300 text-sm mb-4 font-exo">Holdings: <span class="text-blue-400 font-bold font-jetbrains">${coin.holdings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
-            <div class="flex gap-2">
-                <button class="flex-1 btn bg-green-600 hover:bg-green-700 text-white" data-altcoin="${key}" data-action="buy">Buy</button>
-                <button class="flex-1 btn bg-red-600 hover:bg-red-700 text-white" data-altcoin="${key}" data-action="sell">Sell</button>
+            <div class="altcoin-info">
+                <div class="flex items-center mb-1">
+                    <span class="altcoin-label">Price:</span>
+                    <span class="altcoin-value altcoin-price">${coin.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} sats</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="altcoin-label">Holdings:</span>
+                    <span class="altcoin-value altcoin-holdings">${coin.holdings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+            </div>
+            <div class="altcoin-actions">
+                <button class="btn bg-green-600 hover:bg-green-700 text-white" data-altcoin="${key}" data-action="buy" aria-label="Buy ${key}">Buy</button>
+                <button class="btn bg-red-600 hover:bg-red-700 text-white" data-altcoin="${key}" data-action="sell" aria-label="Sell ${key}">Sell</button>
             </div>
         `;
         altcoinMarketDiv.appendChild(altcoinCard);
@@ -119,7 +127,13 @@ const updateButtonStates = (s) => {
         { id: 'buyCoolingButton', cost: s.cooling.cost },
         { id: 'buyPowerSupplyButton', cost: s.powerSupply.cost },
         { id: 'buyQuantumButton', cost: s.quantumProcessor.cost },
-        { id: 'buyAutomationButton', cost: s.automation.cost }
+        { id: 'buyAutomationButton', cost: s.automation.cost },
+        // Mobile + buttons
+        { id: 'buyGpuButtonMobile', cost: s.gpu.cost },
+        { id: 'buyCoolingButtonMobile', cost: s.cooling.cost },
+        { id: 'buyPowerSupplyButtonMobile', cost: s.powerSupply.cost },
+        { id: 'buyQuantumButtonMobile', cost: s.quantumProcessor.cost },
+        { id: 'buyAutomationButtonMobile', cost: s.automation.cost }
     ];
     upgrades.forEach(({ id, cost }) => {
         const btn = document.getElementById(id);
