@@ -25,6 +25,20 @@ function setupEventListeners() {
         mineButton.addEventListener('click', mine);
     }
     
+    // Rebirth Now button animation
+    const rebirthNowButton = document.getElementById('rebirthNowButton');
+    if (rebirthNowButton) {
+        rebirthNowButton.addEventListener('click', function() {
+            rebirthNowButton.classList.remove('shimmer', 'mining-pulse-orange');
+            void rebirthNowButton.offsetWidth;
+            rebirthNowButton.classList.add('mining-pulse-orange');
+            setTimeout(() => {
+                rebirthNowButton.classList.remove('mining-pulse-orange');
+                rebirthNowButton.classList.add('shimmer');
+            }, 800);
+        });
+    }
+    
     // Keyboard shortcuts
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Space' || event.code === 'Enter') {

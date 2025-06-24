@@ -111,15 +111,17 @@ function mine() {
     
     const mineButton = document.getElementById('mineButton');
     if (mineButton) {
-        // Remove shimmer temporarily and add mining pulse
-        mineButton.classList.remove('shimmer');
+        // Remove shimmer and pulse to reset
+        mineButton.classList.remove('shimmer', 'mining-pulse');
+        // Force reflow to restart animation
+        void mineButton.offsetWidth;
+        // Add mining pulse
         mineButton.classList.add('mining-pulse');
-        
-        // After animation completes, restore shimmer
+        // After animation, restore shimmer
         setTimeout(() => {
             mineButton.classList.remove('mining-pulse');
             mineButton.classList.add('shimmer');
-        }, 600);
+        }, 500);
     }
     
     updateUI();
