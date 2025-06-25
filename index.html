@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mining Mania</title>
+    <title>Hash Harvest</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,8 +15,8 @@
     <header class="max-w-7xl mx-auto mb-4 sm:mb-6 px-2 sm:px-4 md:px-8">
         <div class="flex flex-row items-center justify-between gap-2 sm:gap-4">
             <div class="flex flex-row items-center w-full sm:w-auto">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent font-orbitron neon-text text-center w-full sm:w-auto mb-0">
-                    🚀 Mining Mania
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-green-400 via-teal-400 to-lime-400 bg-clip-text text-transparent font-orbitron neon-text text-center w-full sm:w-auto mb-0">
+                    🌱 Hash Harvest
                 </h1>
                 <!-- Mobile: Icon-only settings button -->
                 <div class="ml-auto sm:hidden flex items-center gap-2">
@@ -663,6 +663,15 @@
                 </div>
             </div>
             <div id="shopItemsContainer" class="space-y-3">
+                <!-- Daily Reward Section -->
+                <div class="p-4 bg-gradient-to-r from-yellow-500/20 via-amber-500/20 to-yellow-500/20 rounded-lg border border-yellow-500/40 text-center">
+                    <h3 class="font-bold text-white text-lg mb-2">🎁 Daily Reward</h3>
+                    <p id="dailyRewardStatus" class="text-sm text-gray-300 mb-3">Claim your daily free gems!</p>
+                    <button id="claimDailyRewardBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg w-full">
+                        Claim Now!
+                    </button>
+                </div>
+
                 <!-- Item 1: 2x Sats for 10 mins -->
                 <div class="flex items-center justify-between p-3 bg-gray-800/70 rounded-lg border border-gray-700 hover:border-green-500/50 transition-colors">
                     <div>

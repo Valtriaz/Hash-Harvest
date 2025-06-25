@@ -18,6 +18,20 @@ export function closeShop() {
     }
 }
 
+const DAILY_REWARD_COOLDOWN = 24 * 60 * 60 * 1000; // 24 hours in ms
+const DAILY_REWARD_AMOUNT = 5; // Gems
+
+export function isDailyRewardAvailable() {
+    const s = gameState.getState();
+    return Date.now() - s.lastDailyRewardClaimed > DAILY_REWARD_COOLDOWN;
+}
+
+export function getDailyRewardCooldown() {
+    const s = gameState.getState();
+    const timePassed = Date.now() - s.lastDailyRewardClaimed;
+    return timePassed > DAILY_REWARD_COOLDOWN ? 0 : DAILY_REWARD_COOLDOWN - timePassed;
+}
+
 export function buyBoost(boostType, multiplier, duration, cost) {
     const s = gameState.getState();
 
@@ -47,4 +61,17 @@ export function buyBoost(boostType, multiplier, duration, cost) {
     updateMiningPower();
 
     return { success: true, message: `🚀 ${multiplier}x Boost activated for ${duration / 60} minutes!` };
+}
+
+export function claimDailyReward() {
+    if (isDailyRewardAvailable()) {
+        const s = gameState.getState();
+        gameState.updateState({
+            gems: s.gems + DAILY_REWARD_AMOUNT,
+            lastDailyRewardClaimed: Date.now()
+        });
+        return { success: true, message: `💎 You claimed ${DAILY_REWARD_AMOUNT} free gems!` };
+    } else {
+        return { success: false, message: '🕒 Daily reward is not available yet.' };
+    }
 }

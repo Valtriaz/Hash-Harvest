@@ -1,7 +1,7 @@
-// Main entry point for Mining Mania
+// Main entry point for Hash Harvest
 // Handles initialization and event listeners
 import { loadGame, saveGame, resetGame, openSettings, closeSettings } from './saveLoad.js';
-import { openShop, closeShop, buyBoost } from './shop.js';
+import { openShop, closeShop, buyBoost, claimDailyReward } from './shop.js';
 import { updateMiningPower, gameLoop, mine, buyAltcoin, sellAltcoin } from './game.js';
 import { buyGpu, buyCooling, buyPowerSupply, buyQuantum, buyAutomation, buyMiningBoost, buyEfficiency, buyLuck } from './upgrades.js';
 import { renderUI, showMessage } from './ui.js';
@@ -230,15 +230,24 @@ const setupShopListeners = () => {
     if (!shop) return;
 
     shop.addEventListener('click', (e) => {
-        const button = e.target.closest('button[data-boost-type]');
+        const button = e.target.closest('button');
         if (!button) return;
 
-        const { boostType, multiplier, duration, cost } = button.dataset;
+        // Handle boost purchases
+        if (button.dataset.boostType) {
+            const { boostType, multiplier, duration, cost } = button.dataset;
+            const result = buyBoost(boostType, parseFloat(multiplier), parseInt(duration, 10), parseInt(cost, 10));
+            if (result) {
+                showMessage(result.message, result.success ? 'success' : 'error');
+            }
+        }
 
-        const result = buyBoost(boostType, parseFloat(multiplier), parseInt(duration, 10), parseInt(cost, 10));
-
-        if (result) {
-            showMessage(result.message, result.success ? 'success' : 'error');
+        // Handle daily reward claim
+        if (button.id === 'claimDailyRewardBtn') {
+            const result = claimDailyReward();
+            if (result) {
+                showMessage(result.message, result.success ? 'success' : 'error');
+            }
         }
     });
 };

@@ -5,13 +5,13 @@ import { renderUI, showMessage } from './ui.js';
 // Save/Load Functions
 
 export function saveGame() {
-    const state = gameState.getState();
-    localStorage.setItem('miningManiaSave', JSON.stringify(state));
+    const state = gameState.getState(); // Get current state
+    localStorage.setItem('hashHarvestSave', JSON.stringify(state));
     showMessage('💾 Game Saved Successfully!', 'success');
 }
 
 export function loadGame() {
-    const savedState = localStorage.getItem('miningManiaSave');
+    const savedState = localStorage.getItem('hashHarvestSave');
     if (savedState) {
         try {
             const state = JSON.parse(savedState);
@@ -21,7 +21,7 @@ export function loadGame() {
             showMessage('📂 Game Loaded Successfully!', 'success');
         } catch (error) {
             showMessage('❌ Error loading game data! Save will be reset.', 'error');
-            localStorage.removeItem('miningManiaSave');
+            localStorage.removeItem('hashHarvestSave');
             setTimeout(() => location.reload(), 1500);
         }
     } else {
@@ -32,8 +32,8 @@ export function loadGame() {
 
 export function resetGame() {
     if (confirm('⚠️ Are you sure you want to reset the game? This will delete ALL progress including prestige and rebirth levels!')) {
-        gameState.resetState();
-        localStorage.removeItem('miningManiaSave');
+        gameState.resetState(); // Reset state in memory
+        localStorage.removeItem('hashHarvestSave'); // Clear from storage
         showMessage('🔄 Game reset successfully!', 'success');
         updateMiningPower();
         renderUI();

@@ -1,6 +1,7 @@
 import { gameState } from './state.js';
 import { getRebirthRequirement, canRebirth } from './rebirth.js';
 import { getPrestigeRequirement, canPrestige } from './prestige.js';
+import { isDailyRewardAvailable, getDailyRewardCooldown } from './shop.js';
 
 // Helper to update text content for all elements matching a selector
 const updateText = (selector, text) => {
@@ -100,7 +101,46 @@ export const renderUI = () => {
     renderAltcoinMarket(s);
     // Button states
     renderActiveBoosts(s);
+    renderDailyRewardStatus();
     updateButtonStates(s);
+};
+
+const renderDailyRewardStatus = () => {
+    const button = document.getElementById('claimDailyRewardBtn');
+    const statusText = document.getElementById('dailyRewardStatus');
+    if (!button || !statusText) return;
+
+    if (isDailyRewardAvailable()) {
+        button.disabled = false;
+        button.textContent = 'Claim Now!';
+        button.classList.remove('disabled-button');
+        button.classList.add('enabled-button', 'bg-yellow-500', 'hover:bg-yellow-600');
+        statusText.textContent = 'Your daily reward is ready!';
+    } else {
+        const cooldown = getDailyRewardCooldown();
+        const hours = Math.floor(cooldown / (1000 * 60 * 60));
+        const minutes = Math.floor((cooldown % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((cooldown % (1000 * 60)) / 1000);
+
+        // Ensure button text updates even if the tab is inactive for a while
+        const updateTimer = () => {
+            const remaining = getDailyRewardCooldown();
+            if (remaining <= 0) {
+                renderDailyRewardStatus(); // Re-render to show "Claim Now"
+            } else {
+                const h = Math.floor(remaining / (1000 * 60 * 60));
+                const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((remaining % (1000 * 60)) / 1000);
+                button.textContent = `Claim in ${h}h ${m}m ${s}s`;
+            }
+        };
+
+        button.disabled = true;
+        updateTimer(); // Initial call
+        button.classList.add('disabled-button');
+        button.classList.remove('enabled-button', 'bg-yellow-500', 'hover:bg-yellow-600');
+        statusText.textContent = 'Come back later for your reward.';
+    }
 };
 
 const renderActiveBoosts = (s) => {

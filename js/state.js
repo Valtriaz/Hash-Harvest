@@ -26,6 +26,7 @@ class GameState {
             rebirthLevel: 0,
             rebirthMultiplier: 1,
             rebirthPoints: 0,
+            lastDailyRewardClaimed: 0, // Timestamp for daily reward
             gems: 100, // Premium currency
             boosts: {
                 satoshiBoost: {
