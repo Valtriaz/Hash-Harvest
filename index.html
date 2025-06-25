@@ -19,15 +19,24 @@
                     🚀 Mining Mania
                 </h1>
                 <!-- Mobile: Icon-only settings button -->
-                <button id="openSettingsBtnMobile" class="ml-2 sm:hidden w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </button>
+                <div class="ml-auto sm:hidden flex items-center gap-2">
+                    <button id="openShopBtnMobile" class="w-10 h-10 flex items-center justify-center bg-green-600 hover:bg-green-700 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Shop" aria-controls="shopModal" aria-expanded="false">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </button>
+                    <button id="openSettingsBtnMobile" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white rounded-xl shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <!-- Desktop: Button with text -->
             <div class="hidden sm:flex gap-2 sm:gap-3 w-full sm:w-auto justify-center sm:justify-end">
+                <button id="openShopBtn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 flex items-center justify-center gap-2 font-exo text-lg" aria-label="Shop" aria-controls="shopModal" aria-expanded="false">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="hidden sm:inline">Shop</span>
+                </button>
                 <button id="openSettingsBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 flex items-center justify-center gap-2 font-exo text-lg" aria-label="Settings" aria-controls="settingsModal" aria-expanded="false">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
@@ -70,13 +79,13 @@
                         <p id="satoshisDisplay" class="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-2 animate-pulse-slow font-jetbrains neon-text">0 sats</p>
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-gray-500 font-exo">
                             <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.5 2.54l2.6 1.53c.56-1.24.9-2.62.9-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.05.5-9 4.77-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
-                                </svg>
+                                <!-- Icon will be dynamically added by JS if needed -->
                                 <span id="satoshiRate">0 sats/second</span>
                             </div>
                         </div>
                     </div>
+                    <!-- Active Boosts Display -->
+                    <div id="activeBoosts" class="text-xs text-center -mt-4 mb-4 h-4"></div>
                     <!-- Mining Button -->
                     <div class="text-center mb-4 sm:mb-6">
                         <button id="mineButton" class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 text-white font-bold py-5 sm:py-6 px-4 sm:px-8 rounded-2xl text-xl sm:text-2xl shadow-2xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/50 flex items-center justify-center space-x-3 group font-orbitron shimmer mb-2">
@@ -99,35 +108,35 @@
                         <div class="flex flex-col gap-1 sm:gap-2 text-base sm:text-sm font-exo">
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Total Mined:</span>
-                                <span id="totalMined" class="text-white font-semibold font-jetbrains">0 sats</span>
+                                <span id="totalMined" class="text-white font-semibold font-jetbrains js-total-mined">0 sats</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Clicks:</span>
-                                <span id="totalClicks" class="text-white font-semibold font-jetbrains">0</span>
+                                <span id="totalClicks" class="text-white font-semibold font-jetbrains js-total-clicks">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Time Played:</span>
-                                <span id="timePlayed" class="text-white font-semibold font-jetbrains">0s</span>
+                                <span id="timePlayed" class="text-white font-semibold font-jetbrains js-time-played">0s</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Prestige Level:</span>
-                                <span id="prestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span id="prestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text js-prestige-level">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Prestige Multiplier:</span>
-                                <span id="prestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                                <span id="prestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text js-prestige-multiplier">1.0x</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Rebirth Level:</span>
-                                <span id="rebirthLevel" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-level">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Rebirth Points:</span>
-                                <span id="rebirthPoints" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-points">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Rebirth Multiplier:</span>
-                                <span id="rebirthMultiplier" class="text-orange-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                                <span class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-multiplier">1.0x</span>
                             </div>
                         </div>
                     </div>
@@ -146,35 +155,35 @@
                         <div class="flex flex-col gap-2 text-base font-exo">
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Total Mined:</span>
-                                <span id="modalTotalMined" class="text-white font-semibold font-jetbrains">0 sats</span>
+                                <span id="modalTotalMined" class="text-white font-semibold font-jetbrains js-total-mined">0 sats</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Clicks:</span>
-                                <span id="modalTotalClicks" class="text-white font-semibold font-jetbrains">0</span>
+                                <span id="modalTotalClicks" class="text-white font-semibold font-jetbrains js-total-clicks">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Time Played:</span>
-                                <span id="modalTimePlayed" class="text-white font-semibold font-jetbrains">0s</span>
+                                <span id="modalTimePlayed" class="text-white font-semibold font-jetbrains js-time-played">0s</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Prestige Level:</span>
-                                <span id="modalPrestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span id="modalPrestigeLevel" class="text-purple-400 font-semibold font-jetbrains neon-text js-prestige-level">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Prestige Multiplier:</span>
-                                <span id="modalPrestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                                <span id="modalPrestigeMultiplier" class="text-purple-400 font-semibold font-jetbrains neon-text js-prestige-multiplier">1.0x</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Rebirth Level:</span>
-                                <span id="modalRebirthLevel" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span id="modalRebirthLevel" class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-level">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg> Rebirth Points:</span>
-                                <span id="modalRebirthPoints" class="text-orange-400 font-semibold font-jetbrains neon-text">0</span>
+                                <span id="modalRebirthPoints" class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-points">0</span>
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-gray-400 flex items-center gap-1"><svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg> Rebirth Multiplier:</span>
-                                <span id="modalRebirthMultiplier" class="text-orange-400 font-semibold font-jetbrains neon-text">1.0x</span>
+                                <span id="modalRebirthMultiplier" class="text-orange-400 font-semibold font-jetbrains neon-text js-rebirth-multiplier">1.0x</span>
                             </div>
                         </div>
                     </div>
@@ -225,9 +234,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Increase mining power & efficiency</p>
                                             </div>
                                         </div>
-                                        <p id="gpuLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 1</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-gpu-level">Level: 1</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="gpuCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 10 sats</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-gpu-cost">Cost: 10 sats</p>
                                             <button id="buyGpuButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade GPU
                                             </button>
@@ -242,13 +251,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">GPU</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Increase mining power & efficiency</p>
-                                                <p id="gpuLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 1</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-gpu-level">Level: 1</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyGpuButtonMobile" class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-200 mb-1" aria-label="Upgrade GPU">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="gpuCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 10 sats</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-gpu-cost">Cost: 10 sats</p>
                                             </div>
                                         </div>
                                     </div>
@@ -267,9 +276,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Boost overall mining efficiency</p>
                                             </div>
                                         </div>
-                                        <p id="coolingLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-cooling-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="coolingCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 50 sats</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-cooling-cost">Cost: 50 sats</p>
                                             <button id="buyCoolingButton" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Cooling
                                             </button>
@@ -284,13 +293,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Cooling System</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Boost overall mining efficiency</p>
-                                                <p id="coolingLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-cooling-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyCoolingButtonMobile" class="flex items-center justify-center bg-cyan-600 hover:bg-cyan-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Cooling System">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="coolingCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 50 sats</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-cooling-cost">Cost: 50 sats</p>
                                             </div>
                                         </div>
                                     </div>
@@ -309,9 +318,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Increase mining capacity & stability</p>
                                             </div>
                                         </div>
-                                        <p id="powerSupplyLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-psu-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="powerSupplyCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 200 sats</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-psu-cost">Cost: 200 sats</p>
                                             <button id="buyPowerSupplyButton" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Power Supply
                                             </button>
@@ -326,13 +335,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Power Supply</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Increase mining capacity & stability</p>
-                                                <p id="powerSupplyLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-psu-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyPowerSupplyButtonMobile" class="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Power Supply">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="powerSupplyCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 200 sats</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-psu-cost">Cost: 200 sats</p>
                                             </div>
                                         </div>
                                     </div>
@@ -351,9 +360,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Auto-click mining</p>
                                             </div>
                                         </div>
-                                        <p id="automationLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-automation-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="automationCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 5,000 sats</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-automation-cost">Cost: 5,000 sats</p>
                                             <button id="buyAutomationButton" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Automation
                                             </button>
@@ -368,13 +377,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Mining Automation</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Auto-click mining</p>
-                                                <p id="automationLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-automation-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyAutomationButtonMobile" class="flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Mining Automation">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="automationCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 5,000 sats</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-automation-cost">Cost: 5,000 sats</p>
                                             </div>
                                         </div>
                                     </div>
@@ -393,9 +402,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Revolutionary mining technology</p>
                                             </div>
                                         </div>
-                                        <p id="quantumLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-quantum-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="quantumCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 1,000,000 sats</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-quantum-cost">Cost: 1,000,000 sats</p>
                                             <button id="buyQuantumButton" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Research Quantum
                                             </button>
@@ -410,13 +419,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Quantum Processor</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Revolutionary mining technology</p>
-                                                <p id="quantumLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-quantum-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyQuantumButtonMobile" class="flex items-center justify-center bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 transition-all duration-200 mb-1" aria-label="Research Quantum Processor">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="quantumCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 1,000,000 sats</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-quantum-cost">Cost: 1,000,000 sats</p>
                                             </div>
                                         </div>
                                     </div>
@@ -427,15 +436,15 @@
                                 <div class="bg-gray-900/80 rounded-xl shadow-lg border border-orange-500/30 p-4 mb-3 flex flex-row items-center justify-between gap-6 w-full">
                                     <div class="flex flex-col items-center flex-1 w-full">
                                         <span class="text-xs text-gray-400 font-exo">Rebirth Level</span>
-                                        <span id="rebirthLevel" class="text-2xl font-bold text-orange-400 font-orbitron neon-text">0</span>
+                                        <span class="text-2xl font-bold text-orange-400 font-orbitron neon-text js-rebirth-level">0</span>
                                     </div>
                                     <div class="flex flex-col items-center flex-1 w-full">
                                         <span class="text-xs text-gray-400 font-exo">Rebirth Points</span>
-                                        <span id="rebirthPoints" class="text-2xl font-bold text-orange-300 font-orbitron neon-text">0</span>
+                                        <span class="text-2xl font-bold text-orange-300 font-orbitron neon-text js-rebirth-points">0</span>
                                     </div>
                                     <div class="flex flex-col items-center flex-1 w-full">
                                         <span class="text-xs text-gray-400 font-exo">Rebirth Multiplier</span>
-                                        <span id="rebirthMultiplier" class="text-2xl font-bold text-orange-200 font-orbitron neon-text">1.0x</span>
+                                        <span class="text-2xl font-bold text-orange-200 font-orbitron neon-text js-rebirth-multiplier">1.0x</span>
                                     </div>
                                 </div>
                                 <!-- Rebirth System Banner -->
@@ -446,8 +455,8 @@
                                         <div class="flex items-center justify-center gap-6 mb-6 text-sm font-exo">
                                             <div class="text-center">
                                                 <p class="text-gray-400" id="rebirthRequiredLabel">Required:</p>
-                                                <div class="text-center">
-                                                    <p id="rebirthRequirement" class="text-yellow-400 font-jetbrains font-bold">Next Rebirth Requirement: 10,000+ sats</p>
+                                                <div class="text-center"> <!-- This div seems redundant -->
+                                                    <p id="rebirthRequirement" class="text-yellow-400 font-jetbrains font-bold">10,000+ sats</p>
                                                 </div>
                                             </div>
                                             <div class="text-center">
@@ -484,9 +493,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Increase rebirth multiplier</p>
                                             </div>
                                         </div>
-                                        <p id="miningBoostLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-mining-boost-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="miningBoostCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 1 Rebirth Point</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-mining-boost-cost">Cost: 1 Rebirth Point</p>
                                             <button id="buyMiningBoostButton" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Mining Boost
                                             </button>
@@ -501,13 +510,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Mining Boost</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Increase rebirth multiplier</p>
-                                                <p id="miningBoostLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-mining-boost-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyMiningBoostButtonMobile" class="flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Mining Boost">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="miningBoostCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 1 RP</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-mining-boost-cost-mobile">Cost: 1 RP</p>
                                             </div>
                                         </div>
                                     </div>
@@ -525,9 +534,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Increase rebirth efficiency</p>
                                             </div>
                                         </div>
-                                        <p id="efficiencyLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-efficiency-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="efficiencyCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 2 Rebirth Points</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-efficiency-cost">Cost: 2 Rebirth Points</p>
                                             <button id="buyEfficiencyButton" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Efficiency
                                             </button>
@@ -542,13 +551,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Efficiency</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Increase rebirth efficiency</p>
-                                                <p id="efficiencyLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-efficiency-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyEfficiencyButtonMobile" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Efficiency">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="efficiencyCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 2 RP</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-efficiency-cost-mobile">Cost: 2 RP</p>
                                             </div>
                                         </div>
                                     </div>
@@ -566,9 +575,9 @@
                                                 <p class="text-gray-400 text-sm font-exo">Increase rebirth luck</p>
                                             </div>
                                         </div>
-                                        <p id="luckLevel" class="text-gray-300 text-sm mb-2 font-exo hidden sm:block">Level: 0</p>
+                                        <p class="text-gray-300 text-sm mb-2 font-exo hidden sm:block js-luck-level">Level: 0</p>
                                         <div class="hidden sm:flex flex-col gap-2 mt-auto">
-                                            <p id="luckCost" class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block">Cost: 3 Rebirth Points</p>
+                                            <p class="text-yellow-400 text-lg font-bold font-jetbrains hidden sm:block js-luck-cost">Cost: 3 Rebirth Points</p>
                                             <button id="buyLuckButton" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-exo sm:block hidden">
                                                 Upgrade Luck
                                             </button>
@@ -583,13 +592,13 @@
                                             <div class="flex-1 min-w-0">
                                                 <h3 class="text-xl font-bold text-white font-orbitron">Luck</h3>
                                                 <p class="text-gray-400 text-sm font-exo mt-1">Increase rebirth luck</p>
-                                                <p id="luckLevelMobile" class="text-gray-300 text-xs mt-1 font-exo">Level: 0</p>
+                                                <p class="text-gray-300 text-xs mt-1 font-exo js-luck-level">Level: 0</p>
                                             </div>
                                             <div class="flex flex-col items-end ml-3 flex-shrink-0">
                                                 <button id="buyLuckButtonMobile" class="flex items-center justify-center bg-purple-500 hover:bg-purple-600 text-white font-bold w-10 h-10 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200 mb-1" aria-label="Upgrade Luck">
                                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                                                 </button>
-                                                <p id="luckCostMobile" class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full">Cost: 3 RP</p>
+                                                <p class="text-yellow-400 text-xs font-bold font-jetbrains mb-0 text-right w-full js-luck-cost-mobile">Cost: 3 RP</p>
                                             </div>
                                         </div>
                                     </div>
@@ -643,12 +652,49 @@
         </div>
     </div>
 
+    <!-- Shop Modal (hidden by default) -->
+    <div id="shopModal" class="modal-backdrop hidden flex items-center justify-center p-2 sm:p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
+        <div class="modal w-full max-w-xs sm:max-w-sm md:max-w-md mx-2 sm:mx-4 overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="shopTitle" class="text-xl font-bold">Shop</h2>
+                <div class="flex items-center gap-2 text-lg font-bold text-cyan-400 font-jetbrains neon-text" title="Gems">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v2a2 2 0 01-2 2H7a2 2 0 01-2-2V4zm0 6a2 2 0 012-2h6a2 2 0 012 2v2a2 2 0 01-2 2H7a2 2 0 01-2-2v-2zM11 16a1 1 0 10-2 0v.01a1 1 0 102 0V16z"></path><path fill-rule="evenodd" d="M4.5 2A2.5 2.5 0 002 4.5v11A2.5 2.5 0 004.5 18h11a2.5 2.5 0 002.5-2.5V4.5A2.5 2.5 0 0015.5 2h-11zM3 4.5A1.5 1.5 0 014.5 3h11A1.5 1.5 0 0117 4.5v11a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 013 15.5v-11z" clip-rule="evenodd"></path></svg>
+                    <span id="gemCount">100</span>
+                </div>
+            </div>
+            <div id="shopItemsContainer" class="space-y-3">
+                <!-- Item 1: 2x Sats for 10 mins -->
+                <div class="flex items-center justify-between p-3 bg-gray-800/70 rounded-lg border border-gray-700 hover:border-green-500/50 transition-colors">
+                    <div>
+                        <h3 class="font-bold text-white">Satoshi Surge (2x)</h3>
+                        <p class="text-sm text-gray-400">Doubles all satoshi gains for 10 minutes.</p>
+                    </div>
+                    <button data-boost-type="satoshiBoost" data-multiplier="2" data-duration="600" data-cost="50" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-3 rounded-lg">
+                        50 Gems
+                    </button>
+                </div>
+                <!-- Item 2: 5x Sats for 5 mins -->
+                <div class="flex items-center justify-between p-3 bg-gray-800/70 rounded-lg border border-gray-700 hover:border-green-500/50 transition-colors">
+                    <div>
+                        <h3 class="font-bold text-white">Satoshi Frenzy (5x)</h3>
+                        <p class="text-sm text-gray-400">5x all satoshi gains for 5 minutes.</p>
+                    </div>
+                    <button data-boost-type="satoshiBoost" data-multiplier="5" data-duration="300" data-cost="100" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-3 rounded-lg">
+                        100 Gems
+                    </button>
+                </div>
+            </div>
+            <button id="closeShopBtn" class="btn bg-gray-700 text-white mt-4 w-full" aria-label="Close Shop">Close</button>
+        </div>
+    </div>
+
     <!-- Scripts: Use ES6 modules and correct order -->
     <script type="module" src="./js/state.js"></script>
     <script type="module" src="./js/game.js"></script>
     <script type="module" src="./js/upgrades.js"></script>
     <script type="module" src="./js/ui.js"></script>
     <script type="module" src="./js/saveLoad.js"></script>
+    <script type="module" src="./js/shop.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>

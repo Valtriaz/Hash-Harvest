@@ -1,4 +1,5 @@
 import { gameState } from './state.js';
+import { showMessage } from './ui.js';
 
 // All game state, including initial values, is managed by the central `gameState` object from './state.js'.
 // This file contains the core game logic functions that operate on that state.
@@ -16,6 +17,13 @@ export function updateMiningPower() {
     perSecond *= s.prestigeMultiplier;
     perClick *= s.rebirthMultiplier;
     perSecond *= s.rebirthMultiplier;
+
+    // Apply active boosts
+    if (s.boosts.satoshiBoost.expiresAt > Date.now()) {
+        perClick *= s.boosts.satoshiBoost.multiplier;
+        perSecond *= s.boosts.satoshiBoost.multiplier;
+    }
+
     perClick *= (1 + s.miningBoost.level * s.miningBoost.boost);
     perSecond *= (1 + s.miningBoost.level * s.miningBoost.boost);
     perClick = Math.round(perClick * 100) / 100;
@@ -40,7 +48,27 @@ export function gameLoop() {
         satoshis: s.satoshis + mined,
         totalMined: s.totalMined + mined
     });
+    checkExpiredBoosts(s);
     fluctuatePrices();
+}
+
+function checkExpiredBoosts(s) {
+    let boostsUpdated = false;
+    const now = Date.now();
+    const newBoosts = JSON.parse(JSON.stringify(s.boosts)); // Deep copy to avoid mutation issues
+
+    if (newBoosts.satoshiBoost.expiresAt > 0 && newBoosts.satoshiBoost.expiresAt <= now) {
+        newBoosts.satoshiBoost = { multiplier: 1, expiresAt: 0 };
+        boostsUpdated = true;
+        // The showMessage function is in ui.js, so we'll import it.
+        showMessage('⏰ Satoshi boost has expired!', 'info');
+    }
+
+    if (boostsUpdated) {
+        gameState.updateState({ boosts: newBoosts });
+        // Recalculate mining power now that the boost is gone
+        updateMiningPower();
+    }
 }
 
 export function fluctuatePrices() {

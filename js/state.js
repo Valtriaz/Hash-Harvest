@@ -26,6 +26,13 @@ class GameState {
             rebirthLevel: 0,
             rebirthMultiplier: 1,
             rebirthPoints: 0,
+            gems: 100, // Premium currency
+            boosts: {
+                satoshiBoost: {
+                    multiplier: 1,
+                    expiresAt: 0 // Timestamp
+                }
+            },
             gpu: { level: 1, cost: 10, baseClick: 1, baseIdle: 0.1, multiplier: 1.2 },
             cooling: { level: 0, cost: 50, efficiencyBoost: 0.05, multiplier: 1.3 },
             powerSupply: { level: 0, cost: 200, capacityIncrease: 1, multiplier: 1.4 },

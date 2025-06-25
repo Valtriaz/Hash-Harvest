@@ -2,171 +2,43 @@ import { gameState } from './state.js';
 import { updateMiningPower } from './game.js';
 
 /**
- * Upgrade GPU
+ * Generic upgrade handler.
+ * @param {string} upgradeKey - The key for the upgrade in the gameState (e.g., 'gpu', 'miningBoost').
+ * @param {string} currencyKey - The key for the currency to use (e.g., 'satoshis', 'rebirthPoints').
+ * @param {string} successMessage - A template for the success message.
+ * @param {string} failureMessage - The message to show on failure.
+ * @returns {{success: boolean, message: string}}
  */
-export function buyGpu() {
+function handleUpgrade(upgradeKey, currencyKey, successMessage, failureMessage) {
     const s = gameState.getState();
-    const { satoshis, gpu } = s;
-    if (satoshis >= gpu.cost) {
+    const currency = s[currencyKey];
+    const upgrade = s[upgradeKey];
+
+    if (currency >= upgrade.cost) {
         gameState.updateState({
-            satoshis: satoshis - gpu.cost,
-            gpu: {
-                ...gpu,
-                level: gpu.level + 1,
-                cost: Math.floor(gpu.cost * gpu.multiplier)
+            [currencyKey]: currency - upgrade.cost,
+            [upgradeKey]: {
+                ...upgrade,
+                level: upgrade.level + 1,
+                cost: Math.floor(upgrade.cost * upgrade.multiplier)
             }
         });
         updateMiningPower();
-        return { success: true, message: `🚀 GPU upgraded to Level ${gpu.level + 1}!` };
+        // Get the new level for the message
+        const newLevel = gameState.getState()[upgradeKey].level;
+        return { success: true, message: successMessage.replace('{level}', newLevel) };
     }
-    return { success: false, message: '❌ Not enough sats for GPU upgrade!' };
+    return { success: false, message: failureMessage };
 }
 
-/**
- * Upgrade Cooling System.
- */
-export function buyCooling() {
-    const s = gameState.getState();
-    const { satoshis, cooling } = s;
-    if (satoshis >= cooling.cost) {
-        gameState.updateState({
-            satoshis: satoshis - cooling.cost,
-            cooling: {
-                ...cooling,
-                level: cooling.level + 1,
-                cost: Math.floor(cooling.cost * cooling.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `❄️ Cooling System upgraded to Level ${cooling.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough sats for Cooling System upgrade!' };
-}
-
-/**
- * Upgrade Power Supply.
- */
-export function buyPowerSupply() {
-    const s = gameState.getState();
-    const { satoshis, powerSupply } = s;
-    if (satoshis >= powerSupply.cost) {
-        gameState.updateState({
-            satoshis: satoshis - powerSupply.cost,
-            powerSupply: {
-                ...powerSupply,
-                level: powerSupply.level + 1,
-                cost: Math.floor(powerSupply.cost * powerSupply.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `⚡ Power Supply upgraded to Level ${powerSupply.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough sats for Power Supply upgrade!' };
-}
-
-/**
- * Upgrade Quantum Processor.
- */
-export function buyQuantum() {
-    const s = gameState.getState();
-    const { satoshis, quantumProcessor } = s;
-    if (satoshis >= quantumProcessor.cost) {
-        gameState.updateState({
-            satoshis: satoshis - quantumProcessor.cost,
-            quantumProcessor: {
-                ...quantumProcessor,
-                level: quantumProcessor.level + 1,
-                cost: Math.floor(quantumProcessor.cost * quantumProcessor.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `🔬 Quantum Processor researched! Level ${quantumProcessor.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough sats for Quantum Processor research!' };
-}
-
-/**
- * Upgrade Mining Automation.
- */
-export function buyAutomation() {
-    const s = gameState.getState();
-    const { satoshis, automation } = s;
-    if (satoshis >= automation.cost) {
-        gameState.updateState({
-            satoshis: satoshis - automation.cost,
-            automation: {
-                ...automation,
-                level: automation.level + 1,
-                cost: Math.floor(automation.cost * automation.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `🤖 Mining Automation researched! Level ${automation.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough sats for Mining Automation research!' };
-}
+// --- Rig Upgrades ---
+export const buyGpu = () => handleUpgrade('gpu', 'satoshis', '🚀 GPU upgraded to Level {level}!', '❌ Not enough sats for GPU upgrade!');
+export const buyCooling = () => handleUpgrade('cooling', 'satoshis', '❄️ Cooling System upgraded to Level {level}!', '❌ Not enough sats for Cooling System upgrade!');
+export const buyPowerSupply = () => handleUpgrade('powerSupply', 'satoshis', '⚡ Power Supply upgraded to Level {level}!', '❌ Not enough sats for Power Supply upgrade!');
+export const buyQuantum = () => handleUpgrade('quantumProcessor', 'satoshis', '🔬 Quantum Processor researched! Level {level}!', '❌ Not enough sats for Quantum Processor research!');
+export const buyAutomation = () => handleUpgrade('automation', 'satoshis', '🤖 Mining Automation researched! Level {level}!', '❌ Not enough sats for Mining Automation research!');
 
 // --- Rebirth Upgrades ---
-
-/**
- * Upgrade Mining Boost (Rebirth)
- */
-export function buyMiningBoost() {
-    const s = gameState.getState();
-    const { rebirthPoints, miningBoost } = s;
-    if (rebirthPoints >= miningBoost.cost) {
-        gameState.updateState({
-            rebirthPoints: rebirthPoints - miningBoost.cost,
-            miningBoost: {
-                ...miningBoost,
-                level: miningBoost.level + 1,
-                cost: Math.floor(miningBoost.cost * miningBoost.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `🚀 Mining Boost upgraded to Level ${miningBoost.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough Rebirth Points for Mining Boost upgrade!' };
-}
-
-/**
- * Upgrade Efficiency (Rebirth).
- */
-export function buyEfficiency() {
-    const s = gameState.getState();
-    const { rebirthPoints, efficiency } = s;
-    if (rebirthPoints >= efficiency.cost) {
-        gameState.updateState({
-            rebirthPoints: rebirthPoints - efficiency.cost,
-            efficiency: {
-                ...efficiency,
-                level: efficiency.level + 1,
-                cost: Math.floor(efficiency.cost * efficiency.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `⚡ Efficiency upgraded to Level ${efficiency.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough Rebirth Points for Efficiency upgrade!' };
-}
-
-/**
- * Upgrade Luck (Rebirth).
- */
-export function buyLuck() {
-    const s = gameState.getState();
-    const { rebirthPoints, luck } = s;
-    if (rebirthPoints >= luck.cost) {
-        gameState.updateState({
-            rebirthPoints: rebirthPoints - luck.cost,
-            luck: {
-                ...luck,
-                level: luck.level + 1,
-                cost: Math.floor(luck.cost * luck.multiplier)
-            }
-        });
-        updateMiningPower();
-        return { success: true, message: `🍀 Luck upgraded to Level ${luck.level + 1}!` };
-    }
-    return { success: false, message: '❌ Not enough Rebirth Points for Luck upgrade!' };
-} 
+export const buyMiningBoost = () => handleUpgrade('miningBoost', 'rebirthPoints', '🚀 Mining Boost upgraded to Level {level}!', '❌ Not enough Rebirth Points for Mining Boost upgrade!');
+export const buyEfficiency = () => handleUpgrade('efficiency', 'rebirthPoints', '⚡ Efficiency upgraded to Level {level}!', '❌ Not enough Rebirth Points for Efficiency upgrade!');
+export const buyLuck = () => handleUpgrade('luck', 'rebirthPoints', '🍀 Luck upgraded to Level {level}!', '❌ Not enough Rebirth Points for Luck upgrade!');

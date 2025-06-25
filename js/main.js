@@ -1,9 +1,10 @@
 // Main entry point for Mining Mania
 // Handles initialization and event listeners
 import { loadGame, saveGame, resetGame, openSettings, closeSettings } from './saveLoad.js';
-import { updateMiningPower, gameLoop, mine } from './game.js';
+import { openShop, closeShop, buyBoost } from './shop.js';
+import { updateMiningPower, gameLoop, mine, buyAltcoin, sellAltcoin } from './game.js';
 import { buyGpu, buyCooling, buyPowerSupply, buyQuantum, buyAutomation, buyMiningBoost, buyEfficiency, buyLuck } from './upgrades.js';
-import { renderUI } from './ui.js';
+import { renderUI, showMessage } from './ui.js';
 import { doRebirth } from './rebirth.js';
 import { doPrestige } from './prestige.js';
 
@@ -108,6 +109,14 @@ const setupEventListeners = () => {
     const closeSettingsBtn = document.getElementById('closeSettingsBtn');
     if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', closeSettings);
 
+    // Shop modal open/close
+    const openShopBtn = document.getElementById('openShopBtn');
+    if (openShopBtn) openShopBtn.addEventListener('click', openShop);
+    const openShopBtnMobile = document.getElementById('openShopBtnMobile');
+    if (openShopBtnMobile) openShopBtnMobile.addEventListener('click', openShop);
+    const closeShopBtn = document.getElementById('closeShopBtn');
+    if (closeShopBtn) closeShopBtn.addEventListener('click', closeShop);
+
     // Mining Rig Info Popup (mobile)
     const openStatsBtn = document.getElementById('openStatsModalBtn');
     const closeStatsBtn = document.getElementById('closeStatsModalBtn');
@@ -171,6 +180,7 @@ const setupEventListeners = () => {
         }
         if (event.code === 'Escape') {
             closeSettings();
+            closeShop();
         }
     });
 
@@ -184,7 +194,53 @@ const setupEventListeners = () => {
         });
     }
 
+    // Close shop modal when clicking outside
+    const shopModal = document.getElementById('shopModal');
+    if (shopModal) {
+        shopModal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeShop();
+            }
+        });
+    }
     setupUpgradeListeners();
+    setupMarketListeners();
+    setupShopListeners();
+};
+
+const setupMarketListeners = () => {
+    const market = document.getElementById('altcoinMarket');
+    if (!market) return;
+
+    market.addEventListener('click', (e) => {
+        const button = e.target.closest('button[data-action]');
+        if (!button) return;
+
+        const { altcoin, action } = button.dataset;
+        let result;
+
+        if (action === 'buy') result = buyAltcoin(altcoin);
+        if (action === 'sell') result = sellAltcoin(altcoin);
+        if (result) showMessage(result.message, result.success ? 'success' : 'error');
+    });
+};
+
+const setupShopListeners = () => {
+    const shop = document.getElementById('shopItemsContainer');
+    if (!shop) return;
+
+    shop.addEventListener('click', (e) => {
+        const button = e.target.closest('button[data-boost-type]');
+        if (!button) return;
+
+        const { boostType, multiplier, duration, cost } = button.dataset;
+
+        const result = buyBoost(boostType, parseFloat(multiplier), parseInt(duration, 10), parseInt(cost, 10));
+
+        if (result) {
+            showMessage(result.message, result.success ? 'success' : 'error');
+        }
+    });
 };
 
 const setupUpgradeListeners = () => {
